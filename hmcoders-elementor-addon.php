@@ -1,12 +1,12 @@
 <?php
 /**
- * Plugin Name: Hmake Elementor Addon
+ * Plugin Name: Hmake Elementor Addons  
  * Description: A comprehensive Elementor addon with 5 dynamic widgets for enhanced page building
  * Plugin URI: https://hmcoders.com/elementor-addon
  * Author: hmcoders
  * Version: 1.0.0
  * Author URI: https://hmcoders.com
- * Text Domain: hmake-elementor-addon
+ * Text Domain: hmcoders-elementor-addon
  * Domain Path: /languages
  * Requires Plugins: elementor
  * Elementor tested up to: 3.25.0
@@ -35,6 +35,8 @@ final class Hmake_Elementor_Addon {
     public function __construct() {
         // if ( $this->hmake_is_compatible() ) {
             add_action( 'plugins_loaded', [ $this, 'hmake_on_plugins_loaded' ] );
+            // Load plugin textdomain
+            add_action( 'init', [ $this, 'hmake_load_textdomain' ] );
         // }
     }
 
@@ -55,42 +57,63 @@ final class Hmake_Elementor_Addon {
     }
 
     public function hmake_admin_notice_missing_main_plugin() {
-        if ( isset( $_GET['activate'] ) ) unset( $_GET['activate'] );
+        $activate = filter_input( INPUT_GET, 'activate', FILTER_SANITIZE_STRING );
+        if ( $activate ) {
+            unset( $_GET['activate'] );
+        }
+
+        /* translators: 1: Plugin name, 2: Required plugin name */
         printf(
             '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>',
             sprintf(
-                esc_html__( '"%1$s" requires "%2$s" to be installed and activated.', 'hmake-elementor-addon' ),
-                '<strong>' . esc_html__( 'Hmake Elementor Addon', 'hmake-elementor-addon' ) . '</strong>',
-                '<strong>' . esc_html__( 'Elementor', 'hmake-elementor-addon' ) . '</strong>'
+                esc_html__( '"%1$s" requires "%2$s" to be installed and activated.', 'hmcoders-elementor-addon' ),
+                '<strong>' . esc_html__( 'Hmake Elementor Addon', 'hmcoders-elementor-addon' ) . '</strong>',
+                '<strong>' . esc_html__( 'Elementor', 'hmcoders-elementor-addon' ) . '</strong>'
             )
         );
     }
 
+
     public function hmake_admin_notice_minimum_elementor_version() {
-        if ( isset( $_GET['activate'] ) ) unset( $_GET['activate'] );
+        
+        $activate = filter_input( INPUT_GET, 'activate', FILTER_SANITIZE_STRING );
+        if ( $activate ) {
+            unset( $_GET['activate'] );
+        }
+
+        /* translators: 1: Plugin name, 2: Elementor, 3: Minimum Elementor version */
         printf(
             '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>',
             sprintf(
-                esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'hmake-elementor-addon' ),
-                '<strong>' . esc_html__( 'Hmake Elementor Addon', 'hmake-elementor-addon' ) . '</strong>',
-                '<strong>' . esc_html__( 'Elementor', 'hmake-elementor-addon' ) . '</strong>',
+                esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'hmcoders-elementor-addon' ),
+                '<strong>' . esc_html__( 'Hmake Elementor Addon', 'hmcoders-elementor-addon' ) . '</strong>',
+                '<strong>' . esc_html__( 'Elementor', 'hmcoders-elementor-addon' ) . '</strong>',
                 esc_html( self::MINIMUM_ELEMENTOR_VERSION )
             )
         );
     }
 
+
+
     public function hmake_admin_notice_minimum_php_version() {
-        if ( isset( $_GET['activate'] ) ) unset( $_GET['activate'] );
+        // Sanitize the 'activate' GET parameter
+        $activate = filter_input( INPUT_GET, 'activate', FILTER_SANITIZE_STRING );
+        if ( $activate ) {
+            unset( $_GET['activate'] );
+        }
+
+        /* translators: 1: Plugin name, 2: PHP, 3: Minimum PHP version */
         printf(
             '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>',
             sprintf(
-                esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'hmake-elementor-addon' ),
-                '<strong>' . esc_html__( 'Hmake Elementor Addon', 'hmake-elementor-addon' ) . '</strong>',
-                '<strong>' . esc_html__( 'PHP', 'hmake-elementor-addon' ) . '</strong>',
+                esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'hmcoders-elementor-addon' ),
+                '<strong>' . esc_html__( 'Hmake Elementor Addon', 'hmcoders-elementor-addon' ) . '</strong>',
+                '<strong>' . esc_html__( 'PHP', 'hmcoders-elementor-addon' ) . '</strong>',
                 esc_html( self::MINIMUM_PHP_VERSION )
             )
         );
     }
+
 
     public function hmake_on_plugins_loaded() {
         if ( did_action( 'elementor/loaded' ) ) {
@@ -105,7 +128,7 @@ final class Hmake_Elementor_Addon {
             $elements_manager->add_category(
                 'hmcoders-elements',
                 [
-                    'title' => __( 'HMCoders Elements', 'hmake-elementor-addon' ),
+                    'title' => __( 'HMCoders Elements', 'hmcoders-elementor-addon' ),
                     'icon'  => 'fa fa-plug',
                 ]
             );
@@ -118,53 +141,52 @@ final class Hmake_Elementor_Addon {
         add_action( 'wp_enqueue_scripts', [ $this, 'hmake_widget_scripts' ] );
         add_action( 'elementor/frontend/after_enqueue_styles', [ $this, 'hmake_enqueue_styles' ] );
 
-        // Load plugin textdomain
-        add_action( 'plugins_loaded', [ $this, 'hmake_load_textdomain' ] );
+   
     }
 
-    public function hmake_load_textdomain() {
-        load_plugin_textdomain( 'hmake-elementor-addon', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
-    }
+        public function hmake_load_textdomain() {
+            
+            load_plugin_textdomain('hmake-elementor-addon',false,basename( dirname( __FILE__ ) ) . '/languages');
+        }
 
-    public function hmake_register_widgets( $widgets_manager ) {
-        $widgets = [
-            'dynamic-post-grid'    => 'Hmake_Dynamic_Post_Grid',
-            'advanced-team-member' => 'Hmake_Advanced_Team_Member',
-            'pricing-table-pro'    => 'Hmake_Pricing_Table_Pro',
-            'testimonial-carousel' => 'Hmake_Testimonial_Carousel',
-            'interactive-timeline' => 'Hmake_Interactive_Timeline',
-        ];
+        public function hmake_register_widgets( $widgets_manager ) {
+            $widgets = [
+                'dynamic-post-grid'    => 'Hmake_Dynamic_Post_Grid',
+                'advanced-team-member' => 'Hmake_Advanced_Team_Member',
+                'pricing-table-pro'    => 'Hmake_Pricing_Table_Pro',
+                'testimonial-carousel' => 'Hmake_Testimonial_Carousel',
+                'interactive-timeline' => 'Hmake_Interactive_Timeline',
+            ];
 
-        foreach ( $widgets as $file_slug => $class ) {
-            $file = __DIR__ . '/widgets/' . $file_slug . '.php';
-            if ( file_exists( $file ) ) {
-                require_once $file;
-                $fqcn = "\\hmcoders\\Elementor_Addon\\{$class}"; // Updated namespace
-                if ( class_exists( $fqcn ) ) {
-                    $widgets_manager->register( new $fqcn() );
-                } else {
-                    error_log( "hmake: class {$fqcn} not found in file {$file}" );
+            foreach ( $widgets as $file_slug => $class ) {
+                $file = __DIR__ . '/widgets/' . $file_slug . '.php';
+                if ( file_exists( $file ) ) {
+                    require_once $file;
+                    $fqcn = "\\hmcoders\\Elementor_Addon\\{$class}";
+                    if ( class_exists( $fqcn ) ) {
+                        $widgets_manager->register( new $fqcn() );
+                    }
+                   
                 }
-            } else {
-                error_log( "hmake: widget file not found: {$file}" );
+                
             }
         }
-    }
+
 
     public function hmake_widget_scripts() {
         wp_register_script(
-            'hmcoders-elementor-addon', // Updated handle to match widgets
+            'hmcoders-elementor-addon-script', // Updated handle to match widgets
             plugins_url( 'assets/js/frontend.js', __FILE__ ),
             [ 'jquery' ],
             self::VERSION,
             true
         );
-        wp_enqueue_script( 'hmcoders-elementor-addon' );
+        wp_enqueue_script( 'hmcoders-elementor-addon-script' );
     }
 
     public function hmake_enqueue_styles() {
         wp_enqueue_style(
-            'hmcoders-elementor-addon', // Updated handle
+            'hmcoders-elementor-addon-style.', // Updated handle
             plugin_dir_url( __FILE__ ) . 'assets/css/style.css',
             [],
             self::VERSION

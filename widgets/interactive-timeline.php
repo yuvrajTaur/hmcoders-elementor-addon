@@ -228,17 +228,28 @@ class Hmake_Interactive_Timeline extends Widget_Base {
                 $item_position = in_array( $item_alignment, [ 'left', 'right' ], true ) ? $item_alignment : 'left';
                 $item_class    = 'hmcoders-timeline-item hmcoders-timeline-' . $item_position;
 
-                $link_tag        = 'div';
+                $link_tag = 'div'; // default fallback
                 $link_attributes = '';
+
                 if ( ! empty( $item['hmake_item_link']['url'] ) ) {
                     $link_tag = 'a';
-                    $link_attributes = 'href="' . esc_url( $item['hmake_item_link']['url'] ) . '"';
+                    $attrs   = [];
+
+                    // Escape URL
+                    $attrs[] = 'href="' . esc_url( $item['hmake_item_link']['url'] ) . '"';
+
+                    // Add target
                     if ( ! empty( $item['hmake_item_link']['is_external'] ) ) {
-                        $link_attributes .= ' target="_blank"';
+                        $attrs[] = 'target="_blank"';
                     }
+
+                    // Add nofollow
                     if ( ! empty( $item['hmake_item_link']['nofollow'] ) ) {
-                        $link_attributes .= ' rel="nofollow"';
+                        $attrs[] = 'rel="nofollow"';
                     }
+
+                    // Implode attributes
+                    $link_attributes = implode( ' ', $attrs );
                 }
 
                 $aos_direction = ( $item_position === 'right' ) ? 'left' : 'right';
@@ -255,7 +266,9 @@ class Hmake_Interactive_Timeline extends Widget_Base {
                         </div>
                     </div>
 
-                    <<?php echo esc_attr( $link_tag ); ?> class="hmcoders-timeline-content" <?php echo $link_attributes; ?>>
+                    <<?php echo esc_attr( $link_tag ); ?> 
+                    class="hmcoders-timeline-content" 
+    <?php echo wp_kses_post( $link_attributes ); ?>>
                         <?php if ( ! empty( $item['hmake_item_date'] ) ) : ?>
                             <div class="hmcoders-timeline-date"><?php echo esc_html( $item['hmake_item_date'] ); ?></div>
                         <?php endif; ?>

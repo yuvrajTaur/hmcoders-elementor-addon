@@ -22,7 +22,7 @@ class Hmake_Testimonial_Carousel extends Widget_Base {
     }
 
     public function get_title() {
-        return esc_html__( 'Testimonial Carousel', 'hmake-elementor-addon' );
+        return esc_html__( 'Testimonial Carousel', 'hmcoders-elementor-addon' );
     }
 
     public function get_icon() {
@@ -34,7 +34,7 @@ class Hmake_Testimonial_Carousel extends Widget_Base {
     }
 
     public function get_script_depends() {
-        return [ 'hmake-elementor-addon' ];
+        return [ 'hmcoders-elementor-addon' ];
     }
 
     public function get_style_depends() {
@@ -47,7 +47,7 @@ class Hmake_Testimonial_Carousel extends Widget_Base {
         $this->start_controls_section(
             'hmceak_content_section',
             [
-                'label' => esc_html__( 'Testimonials', 'hmake-elementor-addon' ),
+                'label' => esc_html__( 'Testimonials', 'hmcoders-elementor-addon' ),
                 'tab'   => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -57,9 +57,9 @@ class Hmake_Testimonial_Carousel extends Widget_Base {
         $repeater->add_control(
             'hmceak_testimonial_content',
             [
-                'label'   => esc_html__( 'Testimonial Content', 'hmake-elementor-addon' ),
+                'label'   => esc_html__( 'Testimonial Content', 'hmcoders-elementor-addon' ),
                 'type'    => Controls_Manager::TEXTAREA,
-                'default' => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'hmake-elementor-addon' ),
+                'default' => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'hmcoders-elementor-addon' ),
                 'rows'    => 4,
             ]
         );
@@ -67,7 +67,7 @@ class Hmake_Testimonial_Carousel extends Widget_Base {
         $repeater->add_control(
             'hmceak_client_image',
             [
-                'label'   => esc_html__( 'Client Image', 'hmake-elementor-addon' ),
+                'label'   => esc_html__( 'Client Image', 'hmcoders-elementor-addon' ),
                 'type'    => Controls_Manager::MEDIA,
                 'default' => [
                     'url' => Utils::get_placeholder_image_src(),
@@ -78,9 +78,9 @@ class Hmake_Testimonial_Carousel extends Widget_Base {
         $repeater->add_control(
             'hmceak_client_name',
             [
-                'label'       => esc_html__( 'Client Name', 'hmake-elementor-addon' ),
+                'label'       => esc_html__( 'Client Name', 'hmcoders-elementor-addon' ),
                 'type'        => Controls_Manager::TEXT,
-                'default'     => esc_html__( 'John Doe', 'hmake-elementor-addon' ),
+                'default'     => esc_html__( 'John Doe', 'hmcoders-elementor-addon' ),
                 'label_block' => true,
             ]
         );
@@ -88,9 +88,9 @@ class Hmake_Testimonial_Carousel extends Widget_Base {
         $repeater->add_control(
             'hmceak_client_position',
             [
-                'label'       => esc_html__( 'Client Position', 'hmake-elementor-addon' ),
+                'label'       => esc_html__( 'Client Position', 'hmcoders-elementor-addon' ),
                 'type'        => Controls_Manager::TEXT,
-                'default'     => esc_html__( 'CEO, Company', 'hmake-elementor-addon' ),
+                'default'     => esc_html__( 'CEO, Company', 'hmcoders-elementor-addon' ),
                 'label_block' => true,
             ]
         );
@@ -98,7 +98,7 @@ class Hmake_Testimonial_Carousel extends Widget_Base {
         $repeater->add_control(
             'hmceak_rating',
             [
-                'label'   => esc_html__( 'Rating', 'hmake-elementor-addon' ),
+                'label'   => esc_html__( 'Rating', 'hmcoders-elementor-addon' ),
                 'type'    => Controls_Manager::NUMBER,
                 'default' => 5,
                 'min'     => 1,
@@ -110,26 +110,26 @@ class Hmake_Testimonial_Carousel extends Widget_Base {
         $this->add_control(
             'hmceak_testimonials',
             [
-                'label'       => esc_html__( 'Testimonials', 'hmake-elementor-addon' ),
+                'label'       => esc_html__( 'Testimonials', 'hmcoders-elementor-addon' ),
                 'type'        => Controls_Manager::REPEATER,
                 'fields'      => $repeater->get_controls(),
                 'default'     => [
                     [
-                        'hmceak_testimonial_content' => esc_html__( 'This is an amazing service! I highly recommend it to anyone looking for quality and reliability.', 'hmake-elementor-addon' ),
-                        'hmceak_client_name'         => esc_html__( 'Sarah Johnson', 'hmake-elementor-addon' ),
-                        'hmceak_client_position'     => esc_html__( 'Marketing Director', 'hmake-elementor-addon' ),
+                        'hmceak_testimonial_content' => esc_html__( 'This is an amazing service! I highly recommend it to anyone looking for quality and reliability.', 'hmcoders-elementor-addon' ),
+                        'hmceak_client_name'         => esc_html__( 'Sarah Johnson', 'hmcoders-elementor-addon' ),
+                        'hmceak_client_position'     => esc_html__( 'Marketing Director', 'hmcoders-elementor-addon' ),
                         'hmceak_rating'              => 5,
                     ],
                     [
-                        'hmceak_testimonial_content' => esc_html__( 'Outstanding experience from start to finish. The team was professional and delivered exactly what was promised.', 'hmake-elementor-addon' ),
-                        'hmceak_client_name'         => esc_html__( 'Mike Davis', 'hmake-elementor-addon' ),
-                        'hmceak_client_position'     => esc_html__( 'Business Owner', 'hmake-elementor-addon' ),
+                        'hmceak_testimonial_content' => esc_html__( 'Outstanding experience from start to finish. The team was professional and delivered exactly what was promised.', 'hmcoders-elementor-addon' ),
+                        'hmceak_client_name'         => esc_html__( 'Mike Davis', 'hmcoders-elementor-addon' ),
+                        'hmceak_client_position'     => esc_html__( 'Business Owner', 'hmcoders-elementor-addon' ),
                         'hmceak_rating'              => 5,
                     ],
                     [
-                        'hmceak_testimonial_content' => esc_html__( 'Great value for money. The results exceeded our expectations and the support was fantastic.', 'hmake-elementor-addon' ),
-                        'hmceak_client_name'         => esc_html__( 'Emma Wilson', 'hmake-elementor-addon' ),
-                        'hmceak_client_position'     => esc_html__( 'Project Manager', 'hmake-elementor-addon' ),
+                        'hmceak_testimonial_content' => esc_html__( 'Great value for money. The results exceeded our expectations and the support was fantastic.', 'hmcoders-elementor-addon' ),
+                        'hmceak_client_name'         => esc_html__( 'Emma Wilson', 'hmcoders-elementor-addon' ),
+                        'hmceak_client_position'     => esc_html__( 'Project Manager', 'hmcoders-elementor-addon' ),
                         'hmceak_rating'              => 4.5,
                     ],
                 ],
@@ -143,7 +143,7 @@ class Hmake_Testimonial_Carousel extends Widget_Base {
         $this->start_controls_section(
             'hmceak_carousel_settings_section',
             [
-                'label' => esc_html__( 'Carousel Settings', 'hmake-elementor-addon' ),
+                'label' => esc_html__( 'Carousel Settings', 'hmcoders-elementor-addon' ),
                 'tab'   => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -151,7 +151,7 @@ class Hmake_Testimonial_Carousel extends Widget_Base {
         $this->add_control(
             'hmceak_slides_to_show',
             [
-                'label'   => esc_html__( 'Slides to Show', 'hmake-elementor-addon' ),
+                'label'   => esc_html__( 'Slides to Show', 'hmcoders-elementor-addon' ),
                 'type'    => Controls_Manager::NUMBER,
                 'default' => 2,
                 'min'     => 1,
@@ -162,7 +162,7 @@ class Hmake_Testimonial_Carousel extends Widget_Base {
         $this->add_control(
             'hmceak_slides_to_scroll',
             [
-                'label'   => esc_html__( 'Slides to Scroll', 'hmake-elementor-addon' ),
+                'label'   => esc_html__( 'Slides to Scroll', 'hmcoders-elementor-addon' ),
                 'type'    => Controls_Manager::NUMBER,
                 'default' => 1,
                 'min'     => 1,
@@ -173,10 +173,10 @@ class Hmake_Testimonial_Carousel extends Widget_Base {
         $this->add_control(
             'hmceak_autoplay',
             [
-                'label'        => esc_html__( 'Autoplay', 'hmake-elementor-addon' ),
+                'label'        => esc_html__( 'Autoplay', 'hmcoders-elementor-addon' ),
                 'type'         => Controls_Manager::SWITCHER,
-                'label_on'     => esc_html__( 'Yes', 'hmake-elementor-addon' ),
-                'label_off'    => esc_html__( 'No', 'hmake-elementor-addon' ),
+                'label_on'     => esc_html__( 'Yes', 'hmcoders-elementor-addon' ),
+                'label_off'    => esc_html__( 'No', 'hmcoders-elementor-addon' ),
                 'return_value' => 'yes',
                 'default'      => 'yes',
             ]
@@ -185,7 +185,7 @@ class Hmake_Testimonial_Carousel extends Widget_Base {
         $this->add_control(
             'hmceak_autoplay_speed',
             [
-                'label'     => esc_html__( 'Autoplay Speed (ms)', 'hmake-elementor-addon' ),
+                'label'     => esc_html__( 'Autoplay Speed (ms)', 'hmcoders-elementor-addon' ),
                 'type'      => Controls_Manager::NUMBER,
                 'default'   => 3000,
                 'min'       => 1000,
@@ -200,10 +200,10 @@ class Hmake_Testimonial_Carousel extends Widget_Base {
         $this->add_control(
             'hmceak_infinite',
             [
-                'label'        => esc_html__( 'Infinite Loop', 'hmake-elementor-addon' ),
+                'label'        => esc_html__( 'Infinite Loop', 'hmcoders-elementor-addon' ),
                 'type'         => Controls_Manager::SWITCHER,
-                'label_on'     => esc_html__( 'Yes', 'hmake-elementor-addon' ),
-                'label_off'    => esc_html__( 'No', 'hmake-elementor-addon' ),
+                'label_on'     => esc_html__( 'Yes', 'hmcoders-elementor-addon' ),
+                'label_off'    => esc_html__( 'No', 'hmcoders-elementor-addon' ),
                 'return_value' => 'yes',
                 'default'      => 'yes',
             ]
@@ -212,10 +212,10 @@ class Hmake_Testimonial_Carousel extends Widget_Base {
         $this->add_control(
             'hmceak_show_dots',
             [
-                'label'        => esc_html__( 'Show Dots', 'hmake-elementor-addon' ),
+                'label'        => esc_html__( 'Show Dots', 'hmcoders-elementor-addon' ),
                 'type'         => Controls_Manager::SWITCHER,
-                'label_on'     => esc_html__( 'Yes', 'hmake-elementor-addon' ),
-                'label_off'    => esc_html__( 'No', 'hmake-elementor-addon' ),
+                'label_on'     => esc_html__( 'Yes', 'hmcoders-elementor-addon' ),
+                'label_off'    => esc_html__( 'No', 'hmcoders-elementor-addon' ),
                 'return_value' => 'yes',
                 'default'      => 'yes',
             ]
@@ -224,10 +224,10 @@ class Hmake_Testimonial_Carousel extends Widget_Base {
         $this->add_control(
             'hmceak_show_arrows',
             [
-                'label'        => esc_html__( 'Show Arrows', 'hmake-elementor-addon' ),
+                'label'        => esc_html__( 'Show Arrows', 'hmcoders-elementor-addon' ),
                 'type'         => Controls_Manager::SWITCHER,
-                'label_on'     => esc_html__( 'Yes', 'hmake-elementor-addon' ),
-                'label_off'    => esc_html__( 'No', 'hmake-elementor-addon' ),
+                'label_on'     => esc_html__( 'Yes', 'hmcoders-elementor-addon' ),
+                'label_off'    => esc_html__( 'No', 'hmcoders-elementor-addon' ),
                 'return_value' => 'yes',
                 'default'      => 'yes',
             ]
@@ -236,10 +236,10 @@ class Hmake_Testimonial_Carousel extends Widget_Base {
         $this->add_control(
             'hmceak_pause_on_hover',
             [
-                'label'        => esc_html__( 'Pause on Hover', 'hmake-elementor-addon' ),
+                'label'        => esc_html__( 'Pause on Hover', 'hmcoders-elementor-addon' ),
                 'type'         => Controls_Manager::SWITCHER,
-                'label_on'     => esc_html__( 'Yes', 'hmake-elementor-addon' ),
-                'label_off'    => esc_html__( 'No', 'hmake-elementor-addon' ),
+                'label_on'     => esc_html__( 'Yes', 'hmcoders-elementor-addon' ),
+                'label_off'    => esc_html__( 'No', 'hmcoders-elementor-addon' ),
                 'return_value' => 'yes',
                 'default'      => 'yes',
                 'condition'    => [
@@ -269,60 +269,61 @@ class Hmake_Testimonial_Carousel extends Widget_Base {
             'pauseOnHover'   => ( 'yes' === $settings['hmceak_pause_on_hover'] ),
         ];
 
-        $this->add_render_attribute( 'carousel', 'data-carousel-settings', wp_json_encode( $carousel_settings ) );
+        $this->add_render_attribute('carousel', 'data-carousel-settings',wp_json_encode( $carousel_settings ));
         ?>
-        <div class="hmcoders-testimonial-carousel" <?php echo $this->get_render_attribute_string( 'carousel' ); ?>>
-            <?php foreach ( $settings['hmceak_testimonials'] as $testimonial ) : ?>
-                <div class="hmcoders-testimonial-item">
-                    <?php if ( ! empty( $testimonial['hmceak_testimonial_content'] ) ) : ?>
-                        <div class="hmcoders-testimonial-content">
-                            <p><?php echo esc_html( $testimonial['hmceak_testimonial_content'] ); ?></p>
-                        </div>
-                    <?php endif; ?>
+        <div class="hmcoders-testimonial-carousel" <?php echo esc_attr( $this->get_render_attribute_string( 'carousel' ) ); ?>>
+        <?php foreach ( $settings['hmceak_testimonials'] as $testimonial ) : ?>
+            <div class="hmcoders-testimonial-item">
+                <?php if ( ! empty( $testimonial['hmceak_testimonial_content'] ) ) : ?>
+                    <div class="hmcoders-testimonial-content">
+                        <p><?php echo esc_html( $testimonial['hmceak_testimonial_content'] ); ?></p>
+                    </div>
+                <?php endif; ?>
 
-                    <?php if ( ! empty( $testimonial['hmceak_rating'] ) ) : ?>
-                        <div class="hmcoders-rating">
-                            <?php
-                            $rating      = floatval( $testimonial['hmceak_rating'] );
-                            $full_stars  = floor( $rating );
-                            $half_star   = ( $rating - $full_stars ) >= 0.5 ? 1 : 0;
-                            $empty_stars = 5 - $full_stars - $half_star;
+                <?php if ( ! empty( $testimonial['hmceak_rating'] ) ) : ?>
+                    <div class="hmcoders-rating">
+                        <?php
+                        $rating      = floatval( $testimonial['hmceak_rating'] );
+                        $full_stars  = floor( $rating );
+                        $half_star   = ( $rating - $full_stars ) >= 0.5 ? 1 : 0;
+                        $empty_stars = 5 - $full_stars - $half_star;
 
-                            for ( $i = 0; $i < $full_stars; $i++ ) {
-                                echo '<i class="fas fa-star"></i>';
-                            }
-                            if ( $half_star ) {
-                                echo '<i class="fas fa-star-half-alt"></i>';
-                            }
-                            for ( $i = 0; $i < $empty_stars; $i++ ) {
-                                echo '<i class="far fa-star"></i>';
-                            }
-                            ?>
-                        </div>
-                    <?php endif; ?>
+                        for ( $i = 0; $i < $full_stars; $i++ ) {
+                            echo '<i class="fas fa-star"></i>';
+                        }
+                        if ( $half_star ) {
+                            echo '<i class="fas fa-star-half-alt"></i>';
+                        }
+                        for ( $i = 0; $i < $empty_stars; $i++ ) {
+                            echo '<i class="far fa-star"></i>';
+                        }
+                        ?>
+                    </div>
+                <?php endif; ?>
 
-                    <div class="hmcoders-client-info">
-                        <div class="hmcoders-client-details">
-                            <?php if ( ! empty( $testimonial['hmceak_client_image']['url'] ) ) : ?>
-                                <div class="hmcoders-client-image">
-                                    <img src="<?php echo esc_url( $testimonial['hmceak_client_image']['url'] ); ?>" alt="<?php echo esc_attr( $testimonial['hmceak_client_name'] ); ?>">
-                                </div>
+                <div class="hmcoders-client-info">
+                    <div class="hmcoders-client-details">
+                        <?php if ( ! empty( $testimonial['hmceak_client_image']['url'] ) ) : ?>
+                            <div class="hmcoders-client-image">
+                                <img src="<?php echo esc_url( $testimonial['hmceak_client_image']['url'] ); ?>" alt="<?php echo esc_attr( $testimonial['hmceak_client_name'] ); ?>">
+                            </div>
+                        <?php endif; ?>
+
+                        <div class="hmcoders-client-text">
+                            <?php if ( ! empty( $testimonial['hmceak_client_name'] ) ) : ?>
+                                <h4 class="hmcoders-client-name"><?php echo esc_html( $testimonial['hmceak_client_name'] ); ?></h4>
                             <?php endif; ?>
 
-                            <div class="hmcoders-client-text">
-                                <?php if ( ! empty( $testimonial['hmceak_client_name'] ) ) : ?>
-                                    <h4 class="hmcoders-client-name"><?php echo esc_html( $testimonial['hmceak_client_name'] ); ?></h4>
-                                <?php endif; ?>
-
-                                <?php if ( ! empty( $testimonial['hmceak_client_position'] ) ) : ?>
-                                    <div class="hmcoders-client-position"><?php echo esc_html( $testimonial['hmceak_client_position'] ); ?></div>
-                                <?php endif; ?>
-                            </div>
+                            <?php if ( ! empty( $testimonial['hmceak_client_position'] ) ) : ?>
+                                <div class="hmcoders-client-position"><?php echo esc_html( $testimonial['hmceak_client_position'] ); ?></div>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
-            <?php endforeach; ?>
-        </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+
         <?php
     }
 

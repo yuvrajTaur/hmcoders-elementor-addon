@@ -187,11 +187,14 @@ class Hmake_Advanced_Team_Member extends Widget_Base {
         $layout_class = 'hmcoders-team-' . sanitize_html_class( $settings['hmceak_layout_style'] );
         ?>
         <div class="hmcoders-team-member <?php echo esc_attr( $layout_class ); ?>">
-            <?php if ( ! empty( $settings['hmceak_image']['url'] ) ) : ?>
-                <div class="hmcoders-team-image">
-                    <img src="<?php echo esc_url( $settings['hmceak_image']['url'] ); ?>" alt="<?php echo esc_attr( $settings['hmceak_name'] ); ?>">
-                </div>
-            <?php endif; ?>
+           <?php if ( ! empty( $settings['hmceak_image']['url'] ) ) : ?>
+            <div class="hmcoders-team-image">
+                <img 
+                    src="<?php echo esc_url( $settings['hmceak_image']['url'] ); ?>" 
+                    alt="<?php echo esc_attr( $settings['hmceak_name'] ?? '' ); ?>" 
+                />
+            </div>
+        <?php endif; ?>
 
             <div class="hmcoders-team-content">
                 <?php if ( ! empty( $settings['hmceak_name'] ) ) : ?>
@@ -199,8 +202,11 @@ class Hmake_Advanced_Team_Member extends Widget_Base {
                 <?php endif; ?>
 
                 <?php if ( ! empty( $settings['hmceak_position'] ) ) : ?>
-                    <div class="hmcoders-team-position"><?php echo esc_html( $settings['hmceak_position'] ); ?></div>
+                    <div class="hmcoders-team-position">
+                        <?php echo esc_html( $settings['hmceak_position'] ); ?>
+                    </div>
                 <?php endif; ?>
+
 
                 <?php if ( ! empty( $settings['hmceak_description'] ) ) : ?>
                     <div class="hmcoders-team-description"><?php echo esc_html( $settings['hmceak_description'] ); ?></div>
@@ -219,9 +225,14 @@ class Hmake_Advanced_Team_Member extends Widget_Base {
                                 $this->add_render_attribute( $social_key, 'rel', 'nofollow' );
                             }
                             ?>
-                            <a <?php echo $this->get_render_attribute_string( $social_key ); ?> class="elementor-repeater-item-<?php echo esc_attr( $item['_id'] ); ?>">
-                                <?php Icons_Manager::render_icon( $item['hmceak_social_icon'], [ 'aria-hidden' => 'true' ] ); ?>
+                            <a <?php echo wp_kses_post( $this->get_render_attribute_string( $social_key ) ); ?> 
+                            class="elementor-repeater-item-<?php echo esc_attr( $item['_id'] ); ?>">
+                                <?php 
+                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                Icons_Manager::render_icon( $item['hmceak_social_icon'], [ 'aria-hidden' => 'true' ] ); 
+                                ?>
                             </a>
+
                         <?php endforeach; ?>
                     </div>
                 <?php endif; ?>

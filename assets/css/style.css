@@ -1,0 +1,363 @@
+/**
+ * hmcoders Elementor Addon Styles
+ * Version: 1.0.1
+ */
+
+/* ----------------------
+   Common Styles
+----------------------- */
+.hmcoders-post-grid,
+.hmcoders-team-member,
+.hmcoders-pricing-table,
+.hmcoders-testimonial-carousel,
+.hmcoders-timeline-wrapper {
+    box-sizing: border-box;
+}
+
+.hmcoders-post-grid *,
+.hmcoders-team-member *,
+.hmcoders-pricing-table *,
+.hmcoders-testimonial-carousel *,
+.hmcoders-timeline-wrapper * {
+    box-sizing: border-box;
+}
+
+/* ----------------------
+   Dynamic Post Grid Styles
+----------------------- */
+.hmcoders-post-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.hmcoders-post-card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hmcoders-post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.hmcoders-post-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.hmcoders-post-content {
+    padding: 20px;
+}
+
+.hmcoders-post-title {
+    margin: 0 0 10px 0;
+    font-size: 1.25em;
+    line-height: 1.4;
+}
+
+.hmcoders-post-title a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
+}
+
+.hmcoders-post-title a:hover {
+    color: #007cba;
+}
+
+.hmcoders-post-meta {
+    margin-bottom: 15px;
+    font-size: 0.9em;
+    color: #666;
+    display: flex;
+    gap: 10px;
+}
+
+.hmcoders-post-excerpt {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.hmcoders-read-more-btn {
+    display: inline-block;
+    padding: 8px 16px;
+    background: #007cba;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+    font-size: 0.9em;
+}
+
+.hmcoders-read-more-btn:hover {
+    background: #005a87;
+}
+
+/* Responsive Post Grid */
+@media (max-width: 1024px) {
+    .hmcoders-post-grid[data-columns="4"],
+    .hmcoders-post-grid[data-columns="3"] {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .hmcoders-post-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ----------------------
+   Advanced Team Member Styles
+----------------------- */
+.hmcoders-team-member {
+    text-align: center;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hmcoders-team-member:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.hmcoders-team-image {
+    margin-bottom: 20px;
+}
+
+.hmcoders-team-image img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: block;
+}
+
+.hmcoders-team-name {
+    margin: 0 0 5px 0;
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+.hmcoders-team-position {
+    margin-bottom: 15px;
+    color: #666;
+    font-weight: 500;
+}
+
+.hmcoders-team-description {
+    margin-bottom: 20px;
+    line-height: 1.6;
+    color: #555;
+}
+
+.hmcoders-social-links {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.hmcoders-social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #f0f0f0;
+    color: #666;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.hmcoders-social-links a:hover {
+    background: #007cba;
+    color: #fff;
+    transform: scale(1.1);
+}
+
+/* Team Member Layouts */
+.hmcoders-team-style-2 {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    gap: 20px;
+}
+
+.hmcoders-team-style-2 .hmcoders-team-image {
+    flex-shrink: 0;
+    margin-bottom: 0;
+}
+
+.hmcoders-team-style-2 .hmcoders-team-image img {
+    width: 120px;
+    height: 120px;
+}
+
+.hmcoders-team-style-3 {
+    position: relative;
+    overflow: hidden;
+}
+
+.hmcoders-team-style-3 .hmcoders-team-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    color: #fff;
+    padding: 30px 20px 20px;
+    transform: translateY(50%);
+    transition: transform 0.3s ease;
+}
+
+.hmcoders-team-style-3:hover .hmcoders-team-content {
+    transform: translateY(0);
+}
+
+/* ----------------------
+   Pricing Table Styles
+----------------------- */
+.hmcoders-pricing-table {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.hmcoders-pricing-table:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.hmcoders-pricing-header {
+    padding: 20px;
+    background: #007cba;
+    color: #fff;
+    font-size: 1.25em;
+    font-weight: 600;
+}
+
+.hmcoders-pricing-price {
+    font-size: 2em;
+    font-weight: 700;
+    margin: 15px 0;
+}
+
+.hmcoders-pricing-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #007cba;
+    color: #fff;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.hmcoders-pricing-button:hover {
+    background: #005a87;
+}
+
+/* Featured Pricing Table */
+.hmcoders-pricing-table.hmcoders-featured {
+    border: 2px solid #007cba;
+}
+
+/* ----------------------
+   Testimonial Carousel Styles
+----------------------- */
+.hmcoders-testimonial-carousel {
+    position: relative;
+    overflow: hidden;
+}
+
+.hmcoders-testimonial-item {
+    padding: 20px;
+    background: #f8f8f8;
+    border-radius: 8px;
+    margin: 10px;
+    text-align: center;
+}
+
+.hmcoders-carousel-viewport {
+    overflow: hidden;
+}
+
+.hmcoders-carousel-track {
+    display: flex;
+    transition: transform 0.3s ease;
+}
+
+.hmcoders-carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #007cba;
+    border: none;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.hmcoders-carousel-arrow.prev {
+    left: 10px;
+}
+
+.hmcoders-carousel-arrow.next {
+    right: 10px;
+}
+
+.hmcoders-carousel-dots {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.hmcoders-carousel-dots .hmcoders-dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ccc;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.hmcoders-carousel-dots .hmcoders-dot.active {
+    background: #007cba;
+}
+
+/* ----------------------
+   Interactive Timeline Styles
+----------------------- */
+.hmcoders-timeline-wrapper {
+    position: relative;
+    margin: 20px 0;
+}
+
+.hmcoders-timeline-item {
+    position: relative;
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.hmcoders-timeline-item.aos-animate,
+.hmcoders-timeline-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}

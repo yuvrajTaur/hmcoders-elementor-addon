@@ -36,6 +36,9 @@ class Hmake_Advanced_Team_Member extends Widget_Base {
         return [ 'hmcoders-elements' ];
     }
 
+    public function get_style_depends() {
+        return [ 'hmcoders-fontawesome', 'hmcoders-advanced-team-member' ];
+    }
     public function get_script_depends() {
         return [ 'hmcoders-elementor-addon' ];
     }

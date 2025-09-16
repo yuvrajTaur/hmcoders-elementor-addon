@@ -38,6 +38,10 @@ class Hmake_Dynamic_Post_Grid extends Widget_Base {
         return [ 'hmcoders-elements' ];
     }
 
+    public function get_style_depends() {
+        return [ 'hmcoders-fontawesome', 'hmcoders-dynamic-post-grid' ];
+    }
+
     public function get_script_depends() {
         return [ 'hmcoders-elementor-addon' ];
     }

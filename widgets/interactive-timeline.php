@@ -40,6 +40,10 @@ class Hmake_Interactive_Timeline extends Widget_Base {
         return [ 'hmcoders-elements' ];
     }
 
+    public function get_style_depends() {
+        return [ 'hmcoders-fontawesome', 'hmcoders-interactive-timeline' ];
+    }
+    
     public function get_script_depends() {
         return [ 'hmcoders-elementor-addon' ];
     }

@@ -1,6 +1,6 @@
 /**
- * hmcoders Elementor Addon - Timeline Widget Styles
- * Version: 1.0.1
+ * hmcoders Elementor Addon - Interactive Timeline Widget Styles
+ * Updated Version: 1.1.0
  */
 
 /* ----------------------
@@ -8,6 +8,10 @@
 ----------------------- */
 .hmcoders-timeline-wrapper {
     box-sizing: border-box;
+    position: relative;
+    margin: 40px auto;
+    max-width: 900px;
+    padding: 20px;
 }
 
 .hmcoders-timeline-wrapper * {
@@ -15,23 +19,219 @@
 }
 
 /* ----------------------
-   Interactive Timeline Styles
+   Timeline Line
 ----------------------- */
-.hmcoders-timeline-wrapper {
-    position: relative;
-    margin: 20px 0;
+/* Vertical Line */
+.hmcoders-timeline-vertical .hmcoders-timeline-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 4px;
+    background: #e0e0e0;
+    transform: translateX(-50%);
+    z-index: 0;
 }
 
+/* Horizontal Line */
+.hmcoders-timeline-horizontal .hmcoders-timeline-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: #e0e0e0;
+    transform: translateY(-50%);
+    z-index: 0;
+}
+
+/* ----------------------
+   Timeline Item
+----------------------- */
 .hmcoders-timeline-item {
     position: relative;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(30px);
     transition: opacity 0.6s ease, transform 0.6s ease;
+    z-index: 1;
 }
 
-.hmcoders-timeline-item.aos-animate,
-.hmcoders-timeline-item.visible {
+/* Vertical Items */
+.hmcoders-timeline-vertical .hmcoders-timeline-item {
+    width: 50%;
+    padding: 20px;
+}
+
+/* Horizontal Items */
+.hmcoders-timeline-horizontal .hmcoders-timeline-item {
+    display: inline-block;
+    width: auto;
+    margin: 0 20px;
+    text-align: center;
+    vertical-align: top;
+}
+
+/* Animation visible */
+.hmcoders-timeline-item.visible,
+.hmcoders-timeline-item.aos-animate {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* ----------------------
+   Item Positioning
+----------------------- */
+.hmcoders-timeline-left {
+    left: 0;
+    text-align: right;
+}
+
+.hmcoders-timeline-right {
+    left: 50%;
+    text-align: left;
+}
+
+/* Center alternating alignment */
+.hmcoders-timeline-center .hmcoders-timeline-left,
+.hmcoders-timeline-center .hmcoders-timeline-right {
+    text-align: center;
+}
+
+/* ----------------------
+   Timeline Marker
+----------------------- */
+.hmcoders-timeline-marker {
+    position: absolute;
+    background: #007cba;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Vertical Marker */
+.hmcoders-timeline-vertical .hmcoders-timeline-marker {
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Horizontal Marker */
+.hmcoders-timeline-horizontal .hmcoders-timeline-marker {
+    top: 50%;
+    left: auto;
+    transform: translateY(-50%);
+}
+
+.hmcoders-timeline-icon {
+    color: #fff;
+    font-size: 12px;
+}
+
+/* ----------------------
+   Content Box
+----------------------- */
+.hmcoders-timeline-content {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    position: relative;
+    display: block;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.hmcoders-timeline-content:hover {
+    transform: translateY(-5px);
+}
+
+/* ----------------------
+   Date
+----------------------- */
+.hmcoders-timeline-date {
+    font-size: 0.9em;
+    font-weight: 600;
+    color: #007cba;
+    margin-bottom: 8px;
+}
+
+/* ----------------------
+   Title
+----------------------- */
+.hmcoders-timeline-title {
+    font-size: 1.2em;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* ----------------------
+   Description
+----------------------- */
+.hmcoders-timeline-description {
+    font-size: 0.95em;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* ----------------------
+   Image
+----------------------- */
+.hmcoders-timeline-image {
+    margin-bottom: 15px;
+}
+
+.hmcoders-timeline-image img {
+    max-width: 100%;
+    border-radius: 6px;
+    display: block;
+}
+
+/* ----------------------
+   Responsive Styles
+----------------------- */
+@media (max-width: 768px) {
+    .hmcoders-timeline-wrapper {
+        padding: 10px;
+    }
+
+    /* Vertical timeline line */
+    .hmcoders-timeline-vertical .hmcoders-timeline-line {
+        left: 8px;
+    }
+
+    .hmcoders-timeline-vertical .hmcoders-timeline-item {
+        width: 100%;
+        padding-left: 30px;
+        text-align: left !important;
+    }
+
+    .hmcoders-timeline-vertical .hmcoders-timeline-marker {
+        left: 0;
+        transform: translateX(0);
+    }
+
+    /* Horizontal timeline fallback to vertical */
+    .hmcoders-timeline-horizontal .hmcoders-timeline-item {
+        display: block;
+        width: 100%;
+        margin: 20px 0;
+    }
+
+    .hmcoders-timeline-horizontal .hmcoders-timeline-line {
+        top: 0;
+        height: 4px;
+        width: 100%;
+        left: 0;
+        transform: translateY(0);
+    }
+
+    .hmcoders-timeline-horizontal .hmcoders-timeline-marker {
+        top: 0;
+        transform: translateY(0);
+    }
 }

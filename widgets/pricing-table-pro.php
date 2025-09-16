@@ -40,6 +40,10 @@ class Hmake_Pricing_Table_Pro extends Widget_Base {
         return [ 'hmcoders-elements' ];
     }
 
+    public function get_style_depends() {
+        return [ 'hmcoders-fontawesome', 'hmcoders-pricing-table-pro' ];
+    }
+
     public function get_script_depends() {
         return [ 'hmcoders-elementor-addon' ];
     }

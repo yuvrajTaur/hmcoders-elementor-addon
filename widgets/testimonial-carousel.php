@@ -38,7 +38,7 @@ class Hmake_Testimonial_Carousel extends Widget_Base {
     }
 
     public function get_style_depends() {
-        return [ 'hmake-fontawesome' ];
+        return [ 'hmcoders-fontawesome' ];
     }
 
     protected function hmake_register_controls() {

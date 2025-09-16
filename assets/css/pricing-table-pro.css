@@ -1,0 +1,69 @@
+/**
+ * hmcoders Elementor Addon - Pricing Table Widget Styles
+ * Version: 1.0.1
+ */
+
+/* ----------------------
+   Common Styles
+----------------------- */
+.hmcoders-pricing-table {
+    box-sizing: border-box;
+}
+
+.hmcoders-pricing-table * {
+    box-sizing: border-box;
+}
+
+/* ----------------------
+   Pricing Table Styles
+----------------------- */
+.hmcoders-pricing-table {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.hmcoders-pricing-table:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.hmcoders-pricing-header {
+    padding: 20px;
+    background: #007cba;
+    color: #fff;
+    font-size: 1.25em;
+    font-weight: 600;
+}
+
+.hmcoders-pricing-price {
+    font-size: 2em;
+    font-weight: 700;
+    margin: 15px 0;
+}
+
+.hmcoders-pricing-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #007cba;
+    color: #fff;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.hmcoders-pricing-button:hover {
+    background: #005a87;
+}
+
+/* ----------------------
+   Featured Pricing Table
+----------------------- */
+.hmcoders-pricing-table.hmcoders-featured {
+    border: 2px solid #007cba;
+}

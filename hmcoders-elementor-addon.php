@@ -185,13 +185,7 @@ final class Hmake_Elementor_Addon {
     }
 
     public function hmake_enqueue_styles() {
-        wp_enqueue_style(
-            'hmcoders-elementor-addon-style.', // Updated handle
-            plugin_dir_url( __FILE__ ) . 'assets/css/style.css',
-            [],
-            self::VERSION
-        );
-
+        
         wp_enqueue_style(
             'hmake-fontawesome',
             plugin_dir_url( __FILE__ ) . 'assets/font/hmake-fontawesome.css',
@@ -201,6 +195,24 @@ final class Hmake_Elementor_Addon {
         wp_enqueue_style(
             'hmake-dynamic-post-grid',
             plugin_dir_url( __FILE__ ) . 'assets/css/dynamic-post-grid.css',
+            [],
+            self::VERSION
+        );
+        wp_enqueue_style(
+            'hmake-advanced-team-member',
+            plugin_dir_url( __FILE__ ) . 'assets/css/advanced-team-member.css',
+            [],
+            self::VERSION
+        );
+        wp_enqueue_style(
+            'hmake-interactive-timeline',
+            plugin_dir_url( __FILE__ ) . 'assets/css/interactive-timeline.css',
+            [],
+            self::VERSION
+        );
+        wp_enqueue_style(
+            'hmake-pricing-table-pro',
+            plugin_dir_url( __FILE__ ) . 'assets/css/pricing-table-pro.css',
             [],
             self::VERSION
         );

@@ -198,6 +198,12 @@ final class Hmake_Elementor_Addon {
             [],
             self::VERSION
         );
+        wp_enqueue_style(
+            'hmake-dynamic-post-grid',
+            plugin_dir_url( __FILE__ ) . 'assets/css/dynamic-post-grid.css',
+            [],
+            self::VERSION
+        );
 
         wp_enqueue_style(
             'hmake-aos',

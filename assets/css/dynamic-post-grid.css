@@ -1,0 +1,97 @@
+/* ----------------------
+   Dynamic Post Grid Styles
+----------------------- */
+.hmcoders-post-grid {
+    display: grid !important;
+    gap: var(--hmcoders-grid-gap, 20px); /* Dynamic spacing */
+    grid-template-columns: repeat(var(--hmcoders-grid-columns, 3), 1fr);
+}
+
+/* Post Card */
+.hmcoders-post-card {
+    background: #fff;
+    border-radius: var(--hmcoders-card-radius, 8px);
+    overflow: hidden;
+    box-shadow: var(--hmcoders-card-shadow, 0 2px 5px rgba(0,0,0,0.05));
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hmcoders-post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--hmcoders-hover-shadow, 0 10px 20px rgba(0,0,0,0.1));
+}
+
+/* Image */
+.hmcoders-post-image img {
+    width: 100%;
+    height: var(--hmcoders-image-height, auto);
+    object-fit: cover;
+    display: block;
+}
+
+/* Content */
+.hmcoders-post-content {
+    padding: var(--hmcoders-content-padding, 20px);
+}
+
+.hmcoders-post-title {
+    margin: 0 0 10px 0;
+    font-size: var(--hmcoders-title-size, 1.25em);
+    line-height: 1.4;
+}
+
+.hmcoders-post-title a {
+    text-decoration: none;
+    color: var(--hmcoders-title-color, inherit);
+    transition: color 0.3s ease;
+}
+
+.hmcoders-post-title a:hover {
+    color: var(--hmcoders-title-hover, #007cba);
+}
+
+/* Meta */
+.hmcoders-post-meta {
+    margin-bottom: 15px;
+    font-size: var(--hmcoders-meta-size, 0.9em);
+    color: var(--hmcoders-meta-color, #666);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Excerpt */
+.hmcoders-post-excerpt {
+    margin-bottom: 15px;
+    line-height: 1.6;
+    color: var(--hmcoders-excerpt-color, #444);
+}
+
+/* Read More Button */
+.hmcoders-read-more-btn {
+    display: inline-block;
+    padding: 8px 16px;
+    background: var(--hmcoders-btn-bg, #007cba);
+    color: var(--hmcoders-btn-color, #fff);
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+    font-size: 0.9em;
+}
+
+.hmcoders-read-more-btn:hover {
+    background: var(--hmcoders-btn-hover, #005a87);
+}
+
+/* Responsive Post Grid */
+@media (max-width: 1024px) {
+    .hmcoders-post-grid {
+        grid-template-columns: repeat(var(--hmcoders-tablet-columns, 2), 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .hmcoders-post-grid {
+        grid-template-columns: repeat(var(--hmcoders-mobile-columns, 1), 1fr);
+    }
+}

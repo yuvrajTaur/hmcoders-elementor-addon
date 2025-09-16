@@ -1,110 +1,19 @@
 /**
- * hmcoders Elementor Addon Frontend Scripts
- * Version: 1.0.2
+ * hmcoders Elementor Addon - Testimonial Carousel Script
+ * Version: 1.0.0
  */
-
 (function ($) {
     'use strict';
 
-    // Wait for DOM ready
-    $(document).ready(function () {
-        initHmcodersWidgets();
-    });
-
     // Elementor frontend init
     $(window).on('elementor/frontend/init', function () {
-
-        // Advanced Team Member
-        elementorFrontend.hooks.addAction(
-            'frontend/element_ready/hmcoders-advanced-team-member.default',
-            function ($scope) {
-                initTeamMember($scope);
-            }
-        );
-
-        // Pricing Table
-        elementorFrontend.hooks.addAction(
-            'frontend/element_ready/hmcoders-pricing-table.default',
-            function ($scope) {
-                initPricingTable($scope);
-            }
-        );
-
-        // Testimonial Carousel
         elementorFrontend.hooks.addAction(
             'frontend/element_ready/hmcoders-testimonial-carousel.default',
             function ($scope) {
                 initTestimonialCarousel($scope);
             }
         );
-
-        // Interactive Timeline
-        elementorFrontend.hooks.addAction(
-            'frontend/element_ready/hmcoders-interactive-timeline.default',
-            function ($scope) {
-                initInteractiveTimeline($scope);
-            }
-        );
     });
-
-    /**
-     * Initialize all hmcoders widgets
-     */
-    function initHmcodersWidgets($scope) {
-        $scope = $scope || $(document);
-        initTeamMember($scope);
-        initPricingTable($scope);
-        initTestimonialCarousel($scope);
-        initInteractiveTimeline($scope);
-    }
-
-    /**
-     * Team Member
-     */
-    function initTeamMember($scope) {
-        $scope.find('.hmcoders-team-member').each(function () {
-            var $member = $(this);
-
-            $member.find('.hmcoders-social-links a').on('click', function (e) {
-                var href = $(this).attr('href');
-                if (!href || href === '#' || href.toLowerCase().startsWith('javascript:')) {
-                    e.preventDefault();
-                }
-            });
-
-            $member.hover(
-                function () { $(this).addClass('hovered'); },
-                function () { $(this).removeClass('hovered'); }
-            );
-        });
-    }
-
-    /**
-     * Pricing Table
-     */
-    function initPricingTable($scope) {
-        $scope.find('.hmcoders-pricing-table').each(function () {
-            var $table = $(this);
-
-            $table.find('.hmcoders-pricing-button').on('click', function (e) {
-                var href = $(this).attr('href');
-                if (!href || href === '#' || href.toLowerCase().startsWith('javascript:')) {
-                    e.preventDefault();
-                }
-            });
-
-            $table.hover(
-                function () { $(this).addClass('hovered'); },
-                function () { $(this).removeClass('hovered'); }
-            );
-
-            if ($table.hasClass('hmcoders-featured')) {
-                setTimeout(function () {
-                    $table.addClass('featured-animate');
-                }, 500);
-            }
-        });
-    }
 
     /**
      * Testimonial Carousel
@@ -221,30 +130,6 @@
 
             function stopAutoplay() {
                 if (autoplayInterval) clearInterval(autoplayInterval);
-            }
-        });
-    }
-
-    /**
-     * Interactive Timeline
-     */
-    function initInteractiveTimeline($scope) {
-        $scope.find('.hmcoders-timeline-wrapper').each(function () {
-            var $timeline = $(this);
-            var $items = $timeline.find('.hmcoders-timeline-item');
-
-            if ($timeline.hasClass('hmcoders-timeline-animated') && 'IntersectionObserver' in window) {
-                var observer = new IntersectionObserver(function (entries) {
-                    entries.forEach(function (entry) {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('aos-animate');
-                        }
-                    });
-                }, { threshold: 0.3 });
-
-                $items.each(function () { observer.observe(this); });
-            } else {
-                $items.addClass('aos-animate visible');
             }
         });
     }

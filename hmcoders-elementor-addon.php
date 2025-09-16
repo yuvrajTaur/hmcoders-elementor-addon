@@ -184,13 +184,40 @@ final class Hmake_Elementor_Addon {
         wp_enqueue_script( 'hmcoders-dynamic-post-grid-js' );
 
         wp_register_script(
-            'hmcoders-advanced-team-member-js', // Updated handle to match widgets
+            'hmcoders-advanced-team-member-js', 
             plugins_url( 'assets/js/hmake-advanced-team-member.js', __FILE__ ),
             [ 'jquery' ],
             self::VERSION,
             true
         );
         wp_enqueue_script( 'hmcoders-advanced-team-member-js' );
+
+        wp_register_script(
+            'hmcoders-interactive-timeline-js', 
+            plugins_url( 'assets/js/hmake-interactive-timline.js', __FILE__ ),
+            [ 'jquery' ],
+            self::VERSION,
+            true
+        );
+        wp_enqueue_script( 'hmcoders-interactive-timeline-js' );
+       
+        wp_register_script(
+            'hmcoders-pricing-table-pro-js', 
+            plugins_url( 'assets/js/hmake-pricing-table-pro.js', __FILE__ ),
+            [ 'jquery' ],
+            self::VERSION,
+            true
+        );
+        wp_enqueue_script( 'hmcoders-pricing-table-pro-js' );
+
+        wp_register_script(
+            'hmcoders-testimonial-carousel-js', 
+            plugins_url( 'assets/js/hmcoders-testimonial-carousel.js', __FILE__ ),
+            [ 'jquery' ],
+            self::VERSION,
+            true
+        );
+        wp_enqueue_script( 'hmcoders-testimonial-carousel-js' );
     }
 
     public function hmake_enqueue_styles() {
@@ -222,19 +249,19 @@ final class Hmake_Elementor_Addon {
             self::VERSION
         );
         wp_enqueue_style(
-            'hmcoders-interactive-timeline',
+            'hmcoders-interactive-timeline-css',
             plugin_dir_url( __FILE__ ) . 'assets/css/hmake-interactive-timline.css',
             [],
             self::VERSION
         );
         wp_enqueue_style(
-            'hmcoders-pricing-table-pro',
+            'hmcoders-pricing-table-pro-css',
             plugin_dir_url( __FILE__ ) . 'assets/css/hmake-pricing-table-pro.css',
             [],
             self::VERSION
         );
         wp_enqueue_style(
-            'hmcoders-testimonial-carousel',
+            'hmcoders-testimonial-carousel-css',
             plugin_dir_url( __FILE__ ) . 'assets/css/hmake-testimonial-carousel.css',
             [],
             self::VERSION

@@ -41,11 +41,11 @@ class Hmake_Pricing_Table_Pro extends Widget_Base {
     }
 
     public function get_style_depends() {
-        return [ 'hmcoders-fontawesome', 'hmcoders-pricing-table-pro' ];
+        return [ 'hmcoders-fontawesome', 'hmcoders-pricing-table-pro-css' ];
     }
 
     public function get_script_depends() {
-        return [ 'hmcoders-elementor-addon' ];
+        return [ 'hmcoders-pricing-table-pro-js' ];
     }
     protected function register_controls() {
         // Header Section

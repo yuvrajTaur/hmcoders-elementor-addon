@@ -34,11 +34,11 @@ class Hmake_Testimonial_Carousel extends Widget_Base {
     }
 
     public function get_script_depends() {
-        return [ 'hmcoders-elementor-addon' ];
+        return [ 'hmcoders-testimonial-carousel-js' ];
     }
 
     public function get_style_depends() {
-        return [ 'hmcoders-fontawesome', 'hmcoders-testimonial-carousel' ];
+        return [ 'hmcoders-fontawesome', 'hmcoders-testimonial-carousel-css' ];
     }
 
     protected function register_controls() {

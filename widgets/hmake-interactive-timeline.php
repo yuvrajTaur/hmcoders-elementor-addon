@@ -41,11 +41,11 @@ class Hmake_Interactive_Timeline extends Widget_Base {
     }
 
     public function get_style_depends() {
-        return [ 'hmcoders-fontawesome', 'hmcoders-interactive-timeline' ];
+        return [ 'hmcoders-fontawesome', 'hmcoders-interactive-timeline-css' ];
     }
     
     public function get_script_depends() {
-        return [ 'hmcoders-elementor-addon' ];
+        return [ 'hmcoders-interactive-timeline-js' ];
     }
 
     protected function register_controls() {

@@ -186,12 +186,20 @@ final class Hmake_Elementor_Addon {
 
     public function hmake_enqueue_styles() {
         
+        // wp_enqueue_style(
+        //     'hmcoders-fontawesome',
+        //     plugin_dir_url( __FILE__ ) . 'assets/font/hmake-fontawesome.css',
+        //     [],
+        //     self::VERSION
+        // );
+            
         wp_enqueue_style(
-            'hmcoders-fontawesome',
-            plugin_dir_url( __FILE__ ) . 'assets/font/hmake-fontawesome.css',
-            [],
-            self::VERSION
-        );
+    'hmcoders-fontawesome',
+    'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css',
+    [],
+    '5.15.4'
+);
+
         wp_enqueue_style(
             'hmcoders-dynamic-post-grid',
             plugin_dir_url( __FILE__ ) . 'assets/css/hmake-dynamic-post-grid.css',
@@ -213,6 +221,12 @@ final class Hmake_Elementor_Addon {
         wp_enqueue_style(
             'hmcoders-pricing-table-pro',
             plugin_dir_url( __FILE__ ) . 'assets/css/hmake-pricing-table-pro.css',
+            [],
+            self::VERSION
+        );
+        wp_enqueue_style(
+            'hmcoders-testimonial-carousel',
+            plugin_dir_url( __FILE__ ) . 'assets/css/hmake-testimonial-carousel.css',
             [],
             self::VERSION
         );

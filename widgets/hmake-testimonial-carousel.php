@@ -38,10 +38,10 @@ class Hmake_Testimonial_Carousel extends Widget_Base {
     }
 
     public function get_style_depends() {
-        return [ 'hmcoders-fontawesome' ];
+        return [ 'hmcoders-fontawesome', 'hmcoders-testimonial-carousel' ];
     }
 
-    protected function hmake_register_controls() {
+    protected function register_controls() {
 
         // === Content Section ===
         $this->start_controls_section(
@@ -251,7 +251,7 @@ class Hmake_Testimonial_Carousel extends Widget_Base {
         $this->end_controls_section();
     }
 
-    protected function hmake_render() {
+    protected function render() {
         $settings = $this->get_settings_for_display();
 
         if ( empty( $settings['hmceak_testimonials'] ) ) {
@@ -292,13 +292,14 @@ class Hmake_Testimonial_Carousel extends Widget_Base {
                             echo '<i class="fas fa-star"></i>';
                         }
                         if ( $half_star ) {
-                            echo '<i class="fas fa-star-half-alt"></i>';
+                            echo '<i class="fas fa-star-half"></i>';
                         }
                         for ( $i = 0; $i < $empty_stars; $i++ ) {
                             echo '<i class="far fa-star"></i>';
                         }
                         ?>
-                    </div>
+                        </div>
+
                 <?php endif; ?>
 
                 <div class="hmcoders-client-info">
@@ -321,6 +322,7 @@ class Hmake_Testimonial_Carousel extends Widget_Base {
                     </div>
                 </div>
             </div>
+            
         <?php endforeach; ?>
     </div>
 

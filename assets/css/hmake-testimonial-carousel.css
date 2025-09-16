@@ -1,0 +1,89 @@
+/**
+ * hmcoders Elementor Addon - Testimonial Carousel Widget Styles
+ * Version: 1.0.0
+ */
+
+/* Carousel Wrapper */
+.hmcoders-testimonial-carousel {
+    position: relative;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 20px;
+    overflow: hidden;
+    margin: 20px 0;
+}
+
+/* Individual Item */
+.hmcoders-testimonial-item {
+    background: #fff;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.hmcoders-testimonial-item:hover {
+    transform: translateY(-5px);
+}
+
+/* Testimonial Content */
+.hmcoders-testimonial-content p {
+    font-size: 1em;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* Rating */
+.hmcoders-rating {
+    color: #FFD700;
+    margin-bottom: 15px;
+}
+
+.hmcoders-rating i {
+    color: #FFD700; /* Gold color */
+    margin-right: 2px;
+    font-size: 16px;
+}
+
+
+/* Client Info */
+.hmcoders-client-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.hmcoders-client-image img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.hmcoders-client-text {
+    text-align: left;
+}
+
+.hmcoders-client-name {
+    font-size: 1em;
+    font-weight: 700;
+    margin: 0;
+}
+
+.hmcoders-client-position {
+    font-size: 0.85em;
+    color: #777;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hmcoders-testimonial-carousel {
+        flex-wrap: wrap;
+    }
+    .hmcoders-testimonial-item {
+        width: 100% !important;
+    }
+}

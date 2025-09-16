@@ -151,11 +151,11 @@ final class Hmake_Elementor_Addon {
 
         public function hmake_register_widgets( $widgets_manager ) {
             $widgets = [
-                'dynamic-post-grid'    => 'Hmake_Dynamic_Post_Grid',
-                'advanced-team-member' => 'Hmake_Advanced_Team_Member',
-                'pricing-table-pro'    => 'Hmake_Pricing_Table_Pro',
-                'testimonial-carousel' => 'Hmake_Testimonial_Carousel',
-                'interactive-timeline' => 'Hmake_Interactive_Timeline',
+                'hmake-dynamic-post-grid'    => 'Hmake_Dynamic_Post_Grid',
+                'hmake-advanced-team-member' => 'Hmake_Advanced_Team_Member',
+                'hmake-pricing-table-pro'    => 'Hmake_Pricing_Table_Pro',
+                'hmake-testimonial-carousel' => 'Hmake_Testimonial_Carousel',
+                'hmake-interactive-timeline' => 'Hmake_Interactive_Timeline',
             ];
 
             foreach ( $widgets as $file_slug => $class ) {
@@ -194,25 +194,25 @@ final class Hmake_Elementor_Addon {
         );
         wp_enqueue_style(
             'hmcoders-dynamic-post-grid',
-            plugin_dir_url( __FILE__ ) . 'assets/css/dynamic-post-grid.css',
+            plugin_dir_url( __FILE__ ) . 'assets/css/hmake-dynamic-post-grid.css',
             [],
             self::VERSION
         );
         wp_enqueue_style(
             'hmcoders-advanced-team-member',
-            plugin_dir_url( __FILE__ ) . 'assets/css/advanced-team-member.css',
+            plugin_dir_url( __FILE__ ) . 'assets/css/hmake-advanced-team-member.css',
             [],
             self::VERSION
         );
         wp_enqueue_style(
             'hmcoders-interactive-timeline',
-            plugin_dir_url( __FILE__ ) . 'assets/css/interactive-timline.css',
+            plugin_dir_url( __FILE__ ) . 'assets/css/hmake-interactive-timline.css',
             [],
             self::VERSION
         );
         wp_enqueue_style(
             'hmcoders-pricing-table-pro',
-            plugin_dir_url( __FILE__ ) . 'assets/css/pricing-table-pro.css',
+            plugin_dir_url( __FILE__ ) . 'assets/css/hmake-pricing-table-pro.css',
             [],
             self::VERSION
         );

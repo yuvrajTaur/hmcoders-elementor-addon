@@ -39,11 +39,11 @@ class Hmake_Dynamic_Post_Grid extends Widget_Base {
     }
 
     public function get_style_depends() {
-        return [ 'hmcoders-fontawesome', 'hmcoders-dynamic-post-grid' ];
+        return [ 'hmcoders-fontawesome', 'hmcoders-dynamic-post-grid-css' ];
     }
 
     public function get_script_depends() {
-        return [ 'hmcoders-elementor-addon' ];
+        return [ 'hmcoders-dynamic-post-grid-js' ];
     }
 
     protected function register_controls() {
@@ -204,8 +204,10 @@ class Hmake_Dynamic_Post_Grid extends Widget_Base {
 
         $query = new \WP_Query( $args );
 
-        if ( $query->have_posts() ) : ?>
-            <div class="hmcoders-post-grid" data-columns="<?php echo esc_attr( $settings['hmcodpg_columns'] ); ?>">
+        if ( $query->have_posts() ) : 
+        $columns = isset($settings['hmcodpg_columns']) ? $settings['hmcodpg_columns'] : 3; 
+        ?>
+            <div class="hmcoders-post-grid" data-columns="<?php echo esc_attr($columns); ?>">
                 <?php while ( $query->have_posts() ) : $query->the_post(); ?>
                     <div class="hmcoders-post-card">
                         <?php if ( 'yes' === $settings['hmcodpg_show_image'] && has_post_thumbnail() ) : ?>

@@ -3,29 +3,21 @@
  * Version: 1.0.2
  */
 
-(function($) {
+(function ($) {
     'use strict';
 
     // Wait for DOM ready
-    $(document).ready(function() {
+    $(document).ready(function () {
         initHmcodersWidgets();
     });
 
     // Elementor frontend init
-    $(window).on('elementor/frontend/init', function() {
-
-        // Dynamic Post Grid
-        elementorFrontend.hooks.addAction(
-            'frontend/element_ready/hmcoders-dynamic-post-grid.default',
-            function($scope) {
-                initPostGrid($scope);
-            }
-        );
+    $(window).on('elementor/frontend/init', function () {
 
         // Advanced Team Member
         elementorFrontend.hooks.addAction(
             'frontend/element_ready/hmcoders-advanced-team-member.default',
-            function($scope) {
+            function ($scope) {
                 initTeamMember($scope);
             }
         );
@@ -33,7 +25,7 @@
         // Pricing Table
         elementorFrontend.hooks.addAction(
             'frontend/element_ready/hmcoders-pricing-table.default',
-            function($scope) {
+            function ($scope) {
                 initPricingTable($scope);
             }
         );
@@ -41,7 +33,7 @@
         // Testimonial Carousel
         elementorFrontend.hooks.addAction(
             'frontend/element_ready/hmcoders-testimonial-carousel.default',
-            function($scope) {
+            function ($scope) {
                 initTestimonialCarousel($scope);
             }
         );
@@ -49,7 +41,7 @@
         // Interactive Timeline
         elementorFrontend.hooks.addAction(
             'frontend/element_ready/hmcoders-interactive-timeline.default',
-            function($scope) {
+            function ($scope) {
                 initInteractiveTimeline($scope);
             }
         );
@@ -60,7 +52,6 @@
      */
     function initHmcodersWidgets($scope) {
         $scope = $scope || $(document);
-        initPostGrid($scope);
         initTeamMember($scope);
         initPricingTable($scope);
         initTestimonialCarousel($scope);
@@ -68,46 +59,13 @@
     }
 
     /**
-     * Post Grid
-     */
-    function initPostGrid($scope) {
-        $scope.find('.hmcoders-post-grid').each(function() {
-            var $grid = $(this);
-            $grid.addClass('hmcoders-loading');
-
-            $grid.find('.hmcoders-post-card').hover(
-                function() { $(this).addClass('hovered'); },
-                function() { $(this).removeClass('hovered'); }
-            );
-
-            // Lazy load
-            if ('IntersectionObserver' in window) {
-                var observer = new IntersectionObserver(function(entries, obs) {
-                    entries.forEach(function(entry) {
-                        if (entry.isIntersecting) {
-                            var img = entry.target;
-                            img.src = img.dataset.src || img.src;
-                            img.classList.remove('lazy');
-                            obs.unobserve(img);
-                        }
-                    });
-                });
-
-                $grid.find('img[data-src]').each(function() {
-                    observer.observe(this);
-                });
-            }
-        });
-    }
-
-    /**
      * Team Member
      */
     function initTeamMember($scope) {
-        $scope.find('.hmcoders-team-member').each(function() {
+        $scope.find('.hmcoders-team-member').each(function () {
             var $member = $(this);
 
-            $member.find('.hmcoders-social-links a').on('click', function(e) {
+            $member.find('.hmcoders-social-links a').on('click', function (e) {
                 var href = $(this).attr('href');
                 if (!href || href === '#' || href.toLowerCase().startsWith('javascript:')) {
                     e.preventDefault();
@@ -115,8 +73,8 @@
             });
 
             $member.hover(
-                function() { $(this).addClass('hovered'); },
-                function() { $(this).removeClass('hovered'); }
+                function () { $(this).addClass('hovered'); },
+                function () { $(this).removeClass('hovered'); }
             );
         });
     }
@@ -125,10 +83,10 @@
      * Pricing Table
      */
     function initPricingTable($scope) {
-        $scope.find('.hmcoders-pricing-table').each(function() {
+        $scope.find('.hmcoders-pricing-table').each(function () {
             var $table = $(this);
 
-            $table.find('.hmcoders-pricing-button').on('click', function(e) {
+            $table.find('.hmcoders-pricing-button').on('click', function (e) {
                 var href = $(this).attr('href');
                 if (!href || href === '#' || href.toLowerCase().startsWith('javascript:')) {
                     e.preventDefault();
@@ -136,12 +94,12 @@
             });
 
             $table.hover(
-                function() { $(this).addClass('hovered'); },
-                function() { $(this).removeClass('hovered'); }
+                function () { $(this).addClass('hovered'); },
+                function () { $(this).removeClass('hovered'); }
             );
 
             if ($table.hasClass('hmcoders-featured')) {
-                setTimeout(function() {
+                setTimeout(function () {
                     $table.addClass('featured-animate');
                 }, 500);
             }
@@ -152,7 +110,7 @@
      * Testimonial Carousel
      */
     function initTestimonialCarousel($scope) {
-        $scope.find('.hmcoders-testimonial-carousel').each(function() {
+        $scope.find('.hmcoders-testimonial-carousel').each(function () {
             var $carousel = $(this);
             var $items = $carousel.find('.hmcoders-testimonial-item');
             if ($items.length <= 1) return;
@@ -205,9 +163,9 @@
                     $carousel.append(dotsHtml);
                 }
 
-                $carousel.find('.prev').on('click', function(e) { e.preventDefault(); prevSlide(); });
-                $carousel.find('.next').on('click', function(e) { e.preventDefault(); nextSlide(); });
-                $carousel.find('.hmcoders-dot').on('click', function(e) {
+                $carousel.find('.prev').on('click', function (e) { e.preventDefault(); prevSlide(); });
+                $carousel.find('.next').on('click', function (e) { e.preventDefault(); nextSlide(); });
+                $carousel.find('.hmcoders-dot').on('click', function (e) {
                     e.preventDefault();
                     goToSlide($(this).data('slide'));
                 });
@@ -234,7 +192,7 @@
                     $carousel.find('.next').toggleClass('disabled', currentIndex >= totalItems - slidesToShow);
                 }
 
-                setTimeout(function() { isTransitioning = false; }, 300);
+                setTimeout(function () { isTransitioning = false; }, 300);
             }
 
             function nextSlide() {
@@ -271,20 +229,20 @@
      * Interactive Timeline
      */
     function initInteractiveTimeline($scope) {
-        $scope.find('.hmcoders-timeline-wrapper').each(function() {
+        $scope.find('.hmcoders-timeline-wrapper').each(function () {
             var $timeline = $(this);
             var $items = $timeline.find('.hmcoders-timeline-item');
 
             if ($timeline.hasClass('hmcoders-timeline-animated') && 'IntersectionObserver' in window) {
-                var observer = new IntersectionObserver(function(entries) {
-                    entries.forEach(function(entry) {
+                var observer = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
                         if (entry.isIntersecting) {
                             entry.target.classList.add('aos-animate');
                         }
                     });
                 }, { threshold: 0.3 });
 
-                $items.each(function() { observer.observe(this); });
+                $items.each(function () { observer.observe(this); });
             } else {
                 $items.addClass('aos-animate visible');
             }

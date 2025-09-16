@@ -175,13 +175,22 @@ final class Hmake_Elementor_Addon {
 
     public function hmake_widget_scripts() {
         wp_register_script(
-            'hmcoders-elementor-addon-script', // Updated handle to match widgets
-            plugins_url( 'assets/js/frontend.js', __FILE__ ),
+            'hmcoders-dynamic-post-grid-js', // Updated handle to match widgets
+            plugins_url( 'assets/js/hamke-dynamic-post-grid.js', __FILE__ ),
             [ 'jquery' ],
             self::VERSION,
             true
         );
-        wp_enqueue_script( 'hmcoders-elementor-addon-script' );
+        wp_enqueue_script( 'hmcoders-dynamic-post-grid-js' );
+
+        wp_register_script(
+            'hmcoders-advanced-team-member-js', // Updated handle to match widgets
+            plugins_url( 'assets/js/hmake-advanced-team-member.js', __FILE__ ),
+            [ 'jquery' ],
+            self::VERSION,
+            true
+        );
+        wp_enqueue_script( 'hmcoders-advanced-team-member-js' );
     }
 
     public function hmake_enqueue_styles() {
@@ -201,13 +210,13 @@ final class Hmake_Elementor_Addon {
 );
 
         wp_enqueue_style(
-            'hmcoders-dynamic-post-grid',
+            'hmcoders-dynamic-post-grid-css',
             plugin_dir_url( __FILE__ ) . 'assets/css/hmake-dynamic-post-grid.css',
             [],
             self::VERSION
         );
         wp_enqueue_style(
-            'hmcoders-advanced-team-member',
+            'hmcoders-advanced-team-member-css',
             plugin_dir_url( __FILE__ ) . 'assets/css/hmake-advanced-team-member.css',
             [],
             self::VERSION

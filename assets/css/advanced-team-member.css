@@ -49,9 +49,18 @@
     transition: transform 0.4s ease;
 }
 
+
 .hmcoders-team-member:hover .hmcoders-team-image img {
     transform: scale(1.1);
 }
+.hmcoders-team-member .hmcoders-team-image img {
+    max-width: 250px;
+    width: 100%;
+    height: auto;
+    border-radius: 10px; /* just soft corners */
+    object-fit: cover;
+}
+
 
 /* ----------------------
    Content Area

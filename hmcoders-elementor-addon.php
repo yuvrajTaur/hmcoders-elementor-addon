@@ -212,7 +212,7 @@ final class Hmake_Elementor_Addon {
 
         wp_register_script(
             'hmcoders-testimonial-carousel-js', 
-            plugins_url( 'assets/js/hmcoders-testimonial-carousel.js', __FILE__ ),
+            plugins_url( 'assets/js/hmake-testimonial-carousel.js', __FILE__ ),
             [ 'jquery' ],
             self::VERSION,
             true
@@ -266,7 +266,7 @@ final class Hmake_Elementor_Addon {
             [],
             self::VERSION
         );
-
+       
         wp_enqueue_style(
             'hmake-aos',
             'https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css',

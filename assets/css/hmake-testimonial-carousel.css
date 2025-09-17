@@ -22,7 +22,7 @@
 /* Carousel Track */
 .hmcoders-carousel-track {
     display: flex;
-    gap: 24px;
+    gap: 7px;
     transition: transform 0.5s cubic-bezier(.4, 0, .2, 1);
     will-change: transform;
 }

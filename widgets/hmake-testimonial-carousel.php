@@ -46,6 +46,7 @@ class Hmake_Testimonial_Carousel extends Widget_Base {
             ]
         );
 
+        // Repeater definition
         $repeater = new Repeater();
 
         $repeater->add_control(
@@ -101,6 +102,28 @@ class Hmake_Testimonial_Carousel extends Widget_Base {
             ]
         );
 
+        // Build 5 default items
+        $default_items = [];
+        for ( $i = 1; $i <= 5; $i++ ) {
+            $default_items[] = [
+                'hmceak_testimonial_content' => sprintf(
+                    esc_html__( 'Default testimonial #%d content goes here.', 'hmcoders-elementor-addon' ),
+                    $i
+                ),
+                'hmceak_client_image'       => [ 'url' => Utils::get_placeholder_image_src() ],
+                'hmceak_client_name'        => sprintf(
+                    esc_html__( 'Client %d', 'hmcoders-elementor-addon' ),
+                    $i
+                ),
+                'hmceak_client_position'    => sprintf(
+                    esc_html__( 'Position %d', 'hmcoders-elementor-addon' ),
+                    $i
+                ),
+                'hmceak_rating'             => 5,
+            ];
+        }
+
+        // Add the repeater control with defaults
         $this->add_control(
             'hmceak_testimonials',
             [
@@ -108,6 +131,7 @@ class Hmake_Testimonial_Carousel extends Widget_Base {
                 'type'        => Controls_Manager::REPEATER,
                 'fields'      => $repeater->get_controls(),
                 'title_field' => '{{{ hmceak_client_name }}} - {{{ hmceak_client_position }}}',
+                'default'     => $default_items,
             ]
         );
 
@@ -127,9 +151,9 @@ class Hmake_Testimonial_Carousel extends Widget_Base {
             [
                 'label'   => esc_html__( 'Slides to Show', 'hmcoders-elementor-addon' ),
                 'type'    => Controls_Manager::NUMBER,
-                'default' => 2,
+                'default' => 4,
                 'min'     => 1,
-                'max'     => 6,
+                'max'     => 10,
             ]
         );
 
@@ -140,7 +164,7 @@ class Hmake_Testimonial_Carousel extends Widget_Base {
                 'type'    => Controls_Manager::NUMBER,
                 'default' => 1,
                 'min'     => 1,
-                'max'     => 6,
+                'max'     => 4,
             ]
         );
 
@@ -159,13 +183,13 @@ class Hmake_Testimonial_Carousel extends Widget_Base {
         $this->add_control(
             'hmceak_autoplay_speed',
             [
-                'label'     => esc_html__( 'Autoplay Speed (ms)', 'hmcoders-elementor-addon' ),
-                'type'      => Controls_Manager::NUMBER,
-                'default'   => 3000,
-                'min'       => 1000,
-                'max'       => 10000,
-                'step'      => 100,
-                'condition' => [
+                'label'      => esc_html__( 'Autoplay Speed (ms)', 'hmcoders-elementor-addon' ),
+                'type'       => Controls_Manager::NUMBER,
+                'default'    => 3000,
+                'min'        => 1000,
+                'max'        => 10000,
+                'step'       => 100,
+                'condition'  => [
                     'hmceak_autoplay' => 'yes',
                 ],
             ]
@@ -207,7 +231,6 @@ class Hmake_Testimonial_Carousel extends Widget_Base {
             return;
         }
 
-        // Carousel settings passed to JS
         $carousel_settings = [
             'slidesToShow'   => absint( $settings['hmceak_slides_to_show'] ),
             'slidesToScroll' => absint( $settings['hmceak_slides_to_scroll'] ),

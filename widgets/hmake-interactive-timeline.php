@@ -51,7 +51,7 @@ class Hmake_Interactive_Timeline extends Widget_Base {
     protected function register_controls() {
         // === Timeline Items Section ===
         $this->start_controls_section(
-            'hmake_content_section',
+            'hmceak_content_section',
             [
                 'label' => esc_html__( 'Timeline Items', 'hmcoders-elementor-addon' ),
                 'tab'   => Controls_Manager::TAB_CONTENT,
@@ -61,7 +61,7 @@ class Hmake_Interactive_Timeline extends Widget_Base {
         $repeater = new Repeater();
 
         $repeater->add_control(
-            'hmake_item_date',
+            'hmceak_item_date',
             [
                 'label'       => esc_html__( 'Date', 'hmcoders-elementor-addon' ),
                 'type'        => Controls_Manager::TEXT,
@@ -72,7 +72,7 @@ class Hmake_Interactive_Timeline extends Widget_Base {
         );
 
         $repeater->add_control(
-            'hmake_item_icon',
+            'hmceak_item_icon',
             [
                 'label'   => esc_html__( 'Icon', 'hmcoders-elementor-addon' ),
                 'type'    => Controls_Manager::ICONS,
@@ -84,7 +84,7 @@ class Hmake_Interactive_Timeline extends Widget_Base {
         );
 
         $repeater->add_control(
-            'hmake_item_title',
+            'hmceak_item_title',
             [
                 'label'       => esc_html__( 'Title', 'hmcoders-elementor-addon' ),
                 'type'        => Controls_Manager::TEXT,
@@ -95,7 +95,7 @@ class Hmake_Interactive_Timeline extends Widget_Base {
         );
 
         $repeater->add_control(
-            'hmake_item_description',
+            'hmceak_item_description',
             [
                 'label'   => esc_html__( 'Description', 'hmcoders-elementor-addon' ),
                 'type'    => Controls_Manager::TEXTAREA,
@@ -105,7 +105,7 @@ class Hmake_Interactive_Timeline extends Widget_Base {
         );
 
         $repeater->add_control(
-            'hmake_item_image',
+            'hmceak_item_image',
             [
                 'label'       => esc_html__( 'Image (Optional)', 'hmcoders-elementor-addon' ),
                 'type'        => Controls_Manager::MEDIA,
@@ -114,7 +114,7 @@ class Hmake_Interactive_Timeline extends Widget_Base {
         );
 
         $repeater->add_control(
-            'hmake_item_link',
+            'hmceak_item_link',
             [
                 'label'       => esc_html__( 'Link (Optional)', 'hmcoders-elementor-addon' ),
                 'type'        => Controls_Manager::URL,
@@ -124,24 +124,24 @@ class Hmake_Interactive_Timeline extends Widget_Base {
         );
 
         $this->add_control(
-            'hmake_timeline_items',
+            'hmceak_timeline_items',
             [
                 'label'       => esc_html__( 'Timeline Items', 'hmcoders-elementor-addon' ),
                 'type'        => Controls_Manager::REPEATER,
                 'fields'      => $repeater->get_controls(),
                 'default'     => [
                     [
-                        'hmake_item_date'        => esc_html__( '2020', 'hmcoders-elementor-addon' ),
-                        'hmake_item_title'       => esc_html__( 'Company Founded', 'hmcoders-elementor-addon' ),
-                        'hmake_item_description' => esc_html__( 'Our journey began with a simple idea and a passion for innovation.', 'hmcoders-elementor-addon' ),
+                        'hmceak_item_date'        => esc_html__( '2020', 'hmcoders-elementor-addon' ),
+                        'hmceak_item_title'       => esc_html__( 'Company Founded', 'hmcoders-elementor-addon' ),
+                        'hmceak_item_description' => esc_html__( 'Our journey began with a simple idea and a passion for innovation.', 'hmcoders-elementor-addon' ),
                     ],
                     [
-                        'hmake_item_date'        => esc_html__( '2021', 'hmcoders-elementor-addon' ),
-                        'hmake_item_title'       => esc_html__( 'First Product Launch', 'hmcoders-elementor-addon' ),
-                        'hmake_item_description' => esc_html__( 'We launched our first product after months of development and testing.', 'hmcoders-elementor-addon' ),
+                        'hmceak_item_date'        => esc_html__( '2021', 'hmcoders-elementor-addon' ),
+                        'hmceak_item_title'       => esc_html__( 'First Product Launch', 'hmcoders-elementor-addon' ),
+                        'hmceak_item_description' => esc_html__( 'We launched our first product after months of development and testing.', 'hmcoders-elementor-addon' ),
                     ],
                 ],
-                'title_field' => '{{{ hmake_item_date }}} - {{{ hmake_item_title }}}',
+                'title_field' => '{{{ hmceak_item_date }}} - {{{ hmceak_item_title }}}',
             ]
         );
 
@@ -149,7 +149,7 @@ class Hmake_Interactive_Timeline extends Widget_Base {
 
         // === Layout Section ===
         $this->start_controls_section(
-            'hmake_layout_section',
+            'hmceak_layout_section',
             [
                 'label' => esc_html__( 'Layout', 'hmcoders-elementor-addon' ),
                 'tab'   => Controls_Manager::TAB_CONTENT,
@@ -157,7 +157,7 @@ class Hmake_Interactive_Timeline extends Widget_Base {
         );
 
         $this->add_control(
-            'hmake_timeline_layout',
+            'hmceak_timeline_layout',
             [
                 'label'   => esc_html__( 'Layout', 'hmcoders-elementor-addon' ),
                 'type'    => Controls_Manager::SELECT,
@@ -170,7 +170,7 @@ class Hmake_Interactive_Timeline extends Widget_Base {
         );
 
         $this->add_control(
-            'hmake_timeline_alignment',
+            'hmceak_timeline_alignment',
             [
                 'label'     => esc_html__( 'Alignment', 'hmcoders-elementor-addon' ),
                 'type'      => Controls_Manager::SELECT,
@@ -181,13 +181,13 @@ class Hmake_Interactive_Timeline extends Widget_Base {
                     'center' => esc_html__( 'Center (Alternating)', 'hmcoders-elementor-addon' ),
                 ],
                 'condition' => [
-                    'hmake_timeline_layout' => 'vertical',
+                    'hmceak_timeline_layout' => 'vertical',
                 ],
             ]
         );
 
         $this->add_control(
-            'hmake_show_animation',
+            'hmceak_show_animation',
             [
                 'label'        => esc_html__( 'Show Animation', 'hmcoders-elementor-addon' ),
                 'type'         => Controls_Manager::SWITCHER,
@@ -205,13 +205,13 @@ class Hmake_Interactive_Timeline extends Widget_Base {
     protected function render() {
         $settings = $this->get_settings_for_display();
 
-        if ( empty( $settings['hmake_timeline_items'] ) || ! is_array( $settings['hmake_timeline_items'] ) ) {
+        if ( empty( $settings['hmceak_timeline_items'] ) || ! is_array( $settings['hmceak_timeline_items'] ) ) {
             return;
         }
 
-        $layout    = $settings['hmake_timeline_layout'] ?? 'vertical';
-        $alignment = $settings['hmake_timeline_alignment'] ?? 'left';
-        $animated  = ( isset( $settings['hmake_show_animation'] ) && 'yes' === $settings['hmake_show_animation'] );
+        $layout    = $settings['hmceak_timeline_layout'] ?? 'vertical';
+        $alignment = $settings['hmceak_timeline_alignment'] ?? 'left';
+        $animated  = ( isset( $settings['hmceak_show_animation'] ) && 'yes' === $settings['hmceak_show_animation'] );
 
         $timeline_class  = 'hmcoders-timeline-' . $layout;
         $timeline_class .= ' hmcoders-timeline-' . $alignment;
@@ -223,7 +223,7 @@ class Hmake_Interactive_Timeline extends Widget_Base {
         <div class="hmcoders-timeline-wrapper <?php echo esc_attr( $timeline_class ); ?>">
             <div class="hmcoders-timeline-line"></div>
 
-            <?php foreach ( $settings['hmake_timeline_items'] as $index => $item ) :
+            <?php foreach ( $settings['hmceak_timeline_items'] as $index => $item ) :
                 $item_alignment = $alignment;
                 if ( 'center' === $alignment ) {
                     $item_alignment = ( (int) $index % 2 === 0 ) ? 'left' : 'right';
@@ -235,20 +235,20 @@ class Hmake_Interactive_Timeline extends Widget_Base {
                 $link_tag = 'div'; // default fallback
                 $link_attributes = '';
 
-                if ( ! empty( $item['hmake_item_link']['url'] ) ) {
+                if ( ! empty( $item['hmceak_item_link']['url'] ) ) {
                     $link_tag = 'a';
                     $attrs   = [];
 
                     // Escape URL
-                    $attrs[] = 'href="' . esc_url( $item['hmake_item_link']['url'] ) . '"';
+                    $attrs[] = 'href="' . esc_url( $item['hmceak_item_link']['url'] ) . '"';
 
                     // Add target
-                    if ( ! empty( $item['hmake_item_link']['is_external'] ) ) {
+                    if ( ! empty( $item['hmceak_item_link']['is_external'] ) ) {
                         $attrs[] = 'target="_blank"';
                     }
 
                     // Add nofollow
-                    if ( ! empty( $item['hmake_item_link']['nofollow'] ) ) {
+                    if ( ! empty( $item['hmceak_item_link']['nofollow'] ) ) {
                         $attrs[] = 'rel="nofollow"';
                     }
 
@@ -263,8 +263,8 @@ class Hmake_Interactive_Timeline extends Widget_Base {
                     <div class="hmcoders-timeline-marker">
                         <div class="hmcoders-timeline-icon">
                             <?php
-                            if ( ! empty( $item['hmake_item_icon'] ) ) {
-                                Icons_Manager::render_icon( $item['hmake_item_icon'], [ 'aria-hidden' => 'true' ] );
+                            if ( ! empty( $item['hmceak_item_icon'] ) ) {
+                                Icons_Manager::render_icon( $item['hmceak_item_icon'], [ 'aria-hidden' => 'true' ] );
                             }
                             ?>
                         </div>
@@ -273,23 +273,23 @@ class Hmake_Interactive_Timeline extends Widget_Base {
                     <<?php echo esc_attr( $link_tag ); ?> 
                     class="hmcoders-timeline-content" 
     <?php echo wp_kses_post( $link_attributes ); ?>>
-                        <?php if ( ! empty( $item['hmake_item_date'] ) ) : ?>
-                            <div class="hmcoders-timeline-date"><?php echo esc_html( $item['hmake_item_date'] ); ?></div>
+                        <?php if ( ! empty( $item['hmceak_item_date'] ) ) : ?>
+                            <div class="hmcoders-timeline-date"><?php echo esc_html( $item['hmceak_item_date'] ); ?></div>
                         <?php endif; ?>
 
-                        <?php if ( ! empty( $item['hmake_item_image']['url'] ) ) : ?>
+                        <?php if ( ! empty( $item['hmceak_item_image']['url'] ) ) : ?>
                             <div class="hmcoders-timeline-image">
-                                <img src="<?php echo esc_url( $item['hmake_item_image']['url'] ); ?>" alt="<?php echo esc_attr( $item['hmake_item_title'] ?? '' ); ?>">
+                                <img src="<?php echo esc_url( $item['hmceak_item_image']['url'] ); ?>" alt="<?php echo esc_attr( $item['hmceak_item_title'] ?? '' ); ?>">
                             </div>
                         <?php endif; ?>
 
-                        <?php if ( ! empty( $item['hmake_item_title'] ) ) : ?>
-                            <h3 class="hmcoders-timeline-title"><?php echo esc_html( $item['hmake_item_title'] ); ?></h3>
+                        <?php if ( ! empty( $item['hmceak_item_title'] ) ) : ?>
+                            <h3 class="hmcoders-timeline-title"><?php echo esc_html( $item['hmceak_item_title'] ); ?></h3>
                         <?php endif; ?>
 
-                        <?php if ( ! empty( $item['hmake_item_description'] ) ) : ?>
+                        <?php if ( ! empty( $item['hmceak_item_description'] ) ) : ?>
                             <div class="hmcoders-timeline-description">
-                                <p><?php echo wp_kses_post( $item['hmake_item_description'] ); ?></p>
+                                <p><?php echo wp_kses_post( $item['hmceak_item_description'] ); ?></p>
                             </div>
                         <?php endif; ?>
                     </<?php echo esc_attr( $link_tag ); ?>>

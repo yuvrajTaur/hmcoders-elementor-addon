@@ -11,7 +11,7 @@ class Hmake_CPT_Register {
 
 public function hmake_register_cpts() {
     // Timeline CPT
-    register_post_type('hmceak_timeline', array(
+    register_post_type('hmake_timeline', array(
         'labels' => array(
             'name' => __('Timelines', 'hmcoders'),
             'singular_name' => __('Timeline', 'hmcoders'),

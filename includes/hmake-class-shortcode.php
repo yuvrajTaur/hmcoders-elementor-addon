@@ -18,6 +18,7 @@ class Hmake_Shortcodes {
      * @return string
      */
     public static function hmake_render_timeline( $atts ) {
+     
         // call helper render function
         return Hmake_Helper::hmake_render_timeline( $atts );
     }

@@ -10,46 +10,46 @@ class Hmake_class_Assets {
     /**
      * Register all scripts
      */
-    public static function register_scripts() {
-        wp_register_script(
-            'hmcoders-dynamic-post-grid-js',
-            plugins_url( 'assets/js/hmake-dynamic-post-grid.js', __FILE__ ),
-            [ 'jquery' ],
-            self::VERSION,
-            true
-        );
+       public static function hmake_register_scripts() {
+        // wp_register_script(
+        //     'hmcoders-dynamic-post-grid-js',
+        //     plugins_url( 'assets/js/hmake-dynamic-post-grid.js', HMAKE_PLUGIN_FILE ),
+        //     [ 'jquery' ],
+        //     self::VERSION,
+        //     true
+        // );
 
-        wp_register_script(
-            'hmcoders-advanced-team-member-js',
-            plugins_url( 'assets/js/hmake-advanced-team-member.js', __FILE__ ),
-            [ 'jquery' ],
-            self::VERSION,
-            true
-        );
+        // wp_register_script(
+        //     'hmcoders-advanced-team-member-js',
+        //     plugins_url( 'assets/js/hmake-advanced-team-member.js', HMAKE_PLUGIN_FILE ),
+        //     [ 'jquery' ],
+        //     self::VERSION,
+        //     true
+        // );
 
         wp_register_script(
             'hmcoders-interactive-timeline-js',
-            plugins_url( 'assets/js/hmake-interactive-timeline.js', __FILE__ ),
+            plugins_url( 'assets/js/hmake-interactive-timeline.js', HMAKE_PLUGIN_FILE ),
             [ 'jquery' ],
             self::VERSION,
             true
         );
 
-        wp_register_script(
-            'hmcoders-pricing-table-pro-js',
-            plugins_url( 'assets/js/hmake-pricing-table-pro.js', __FILE__ ),
-            [ 'jquery' ],
-            self::VERSION,
-            true
-        );
+        // wp_register_script(
+        //     'hmcoders-pricing-table-pro-js',
+        //     plugins_url( 'assets/js/hmake-pricing-table-pro.js', HMAKE_PLUGIN_FILE ),
+        //     [ 'jquery' ],
+        //     self::VERSION,
+        //     true
+        // );
 
-        wp_register_script(
-            'hmcoders-testimonial-carousel-js',
-            plugins_url( 'assets/js/hmake-testimonial-carousel.js', __FILE__ ),
-            [ 'jquery' ],
-            self::VERSION,
-            true
-        );
+        // wp_register_script(
+        //     'hmcoders-testimonial-carousel-js',
+        //     plugins_url( 'assets/js/hmake-testimonial-carousel.js', HMAKE_PLUGIN_FILE ),
+        //     [ 'jquery' ],
+        //     self::VERSION,
+        //     true
+        // );
 
         // External AOS script
         wp_register_script(
@@ -60,53 +60,53 @@ class Hmake_class_Assets {
             true
         );
     }
-
+    
     /**
      * Register all styles
-     */
-    public static function register_styles() {
+    */
+    public static function hmake_register_styles() {
         // Font Awesome - from CDN
-        wp_register_style(
-            'hmcoders-fontawesome',
-            'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css',
-            [],
-            '5.15.4'
-        );
+        // wp_register_style(
+        //     'hmcoders-fontawesome',
+        //     'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css',
+        //     [],
+        //     '5.15.4'
+        // );
 
-        wp_register_style(
-            'hmcoders-dynamic-post-grid-css',
-            plugin_dir_url( __FILE__ ) . 'assets/css/hmake-dynamic-post-grid.css',
-            [],
-            self::VERSION
-        );
+        // wp_register_style(
+        //     'hmcoders-dynamic-post-grid-css',
+        //     plugin_dir_url( HMAKE_PLUGIN_FILE ) . 'assets/css/hmake-dynamic-post-grid.css',
+        //     [],
+        //     self::VERSION
+        // );
 
-        wp_register_style(
-            'hmcoders-advanced-team-member-css',
-            plugin_dir_url( __FILE__ ) . 'assets/css/hmake-advanced-team-member.css',
-            [],
-            self::VERSION
-        );
-
+        // wp_register_style(
+        //     'hmcoders-advanced-team-member-css',
+        //     plugin_dir_url( HMAKE_PLUGIN_FILE ) . 'assets/css/hmake-advanced-team-member.css',
+        //     [],
+        //     self::VERSION
+        // );
+        
         wp_register_style(
             'hmcoders-interactive-timeline-css',
-            plugin_dir_url( __FILE__ ) . 'assets/css/hmake-interactive-timeline.css',
+            plugin_dir_url( HMAKE_PLUGIN_FILE ) . 'assets/css/hmake-interactive-timeline.css',
             [],
             self::VERSION
         );
 
-        wp_register_style(
-            'hmcoders-pricing-table-pro-css',
-            plugin_dir_url( __FILE__ ) . 'assets/css/hmake-pricing-table-pro.css',
-            [],
-            self::VERSION
-        );
-
-        wp_register_style(
-            'hmcoders-testimonial-carousel-css',
-            plugin_dir_url( __FILE__ ) . 'assets/css/hmake-testimonial-carousel.css',
-            [],
-            self::VERSION
-        );
+        // wp_register_style(
+        //     'hmcoders-pricing-table-pro-css',
+        //     plugin_dir_url( HMAKE_PLUGIN_FILE ) . 'assets/css/hmake-pricing-table-pro.css',
+        //     [],
+        //     self::VERSION
+        // );
+        
+        // wp_register_style(
+        //     'hmcoders-testimonial-carousel-css',
+        //     plugin_dir_url( HMAKE_PLUGIN_FILE ) . 'assets/css/hmake-testimonial-carousel.css',
+        //     [],
+        //     self::VERSION
+        // );
 
         // External AOS CSS
         wp_register_style(
@@ -116,12 +116,12 @@ class Hmake_class_Assets {
             '2.3.4'
         );
     }
-
+    
     /**
      * Enqueue scripts by handles array
      *
      * @param array $handles Array of script handles
-     */
+    */
     public static function enqueue_scripts( $handles = [] ) {
         foreach ( $handles as $handle ) {
             if ( wp_script_is( $handle, 'registered' ) ) {
@@ -129,12 +129,12 @@ class Hmake_class_Assets {
             }
         }
     }
-
+    
     /**
      * Enqueue styles by handles array
-     *
-     * @param array $handles Array of style handles
-     */
+    *
+    * @param array $handles Array of style handles
+    */
     public static function enqueue_styles( $handles = [] ) {
         foreach ( $handles as $handle ) {
             if ( wp_style_is( $handle, 'registered' ) ) {
@@ -142,16 +142,14 @@ class Hmake_class_Assets {
             }
         }
     }
-
+    
     /**
      * Initialize by registering all scripts and styles
      * Hook this once on 'wp_enqueue_scripts' or early
      */
     public static function init() {
-        self::register_scripts();
-        self::register_styles();
+        self::hmake_register_scripts();
+        self::hmake_register_styles();
+
     }
 }
-
-// Hook init to register scripts and styles early on frontend
-add_action( 'wp_enqueue_scripts', [ 'Hmake_class_Assets', 'init' ] );

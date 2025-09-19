@@ -41,7 +41,7 @@ class Hmake_Helper {
         ], $atts, 'hmake_timeline');
 
         $query_args = [
-            'post_type'      => 'hmceak_timeline',
+            'post_type'      => 'hmake_timeline',
             'posts_per_page' => intval($atts['count']),
             'order'          => in_array(strtoupper($atts['order']), ['ASC', 'DESC']) ? strtoupper($atts['order']) : 'DESC',
             'orderby'        => 'date',

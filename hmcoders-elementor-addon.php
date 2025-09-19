@@ -17,6 +17,9 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly.
 }
 
+    define( 'HMCODERS_PATH', plugin_dir_path( __FILE__ ) );
+    define( 'HMCODERS_URL', plugin_dir_url( __FILE__ ) );
+
 final class Hmake_Elementor_Addon {
 
     const VERSION = '1.0.0';
@@ -36,6 +39,8 @@ final class Hmake_Elementor_Addon {
         // if ( $this->hmake_is_compatible() ) {
             add_action( 'plugins_loaded', [ $this, 'hmake_on_plugins_loaded' ] );
             // Load plugin textdomain
+        $this->hmake_includes();  
+
             add_action( 'init', [ $this, 'hmake_load_textdomain' ] );
         // }
     }
@@ -138,9 +143,7 @@ final class Hmake_Elementor_Addon {
         add_action( 'elementor/widgets/register', [ $this, 'hmake_register_widgets' ] );
 
         // Enqueue styles and scripts
-        add_action( 'wp_enqueue_scripts', [ $this, 'hmake_widget_scripts' ] );
-        add_action( 'elementor/frontend/after_enqueue_styles', [ $this, 'hmake_enqueue_styles' ] );
-
+        add_action( 'wp_enqueue_scripts', [ 'Hmake_class_Assets', 'init' ] );
    
     }
 
@@ -149,6 +152,14 @@ final class Hmake_Elementor_Addon {
             load_plugin_textdomain('hmake-elementor-addon',false,basename( dirname( __FILE__ ) ) . '/languages');
         }
 
+        public function hmake_includes() {
+           require_once HMCODERS_PATH . 'includes/hmake-class-cpt.php';
+           require_once HMCODERS_PATH . 'includes/hmake-class-helper.php';
+           require_once HMCODERS_PATH . 'includes/hmake-class-shortcode.php';
+           require_once HMCODERS_PATH . 'includes/hmake-class-assets.php';
+            
+        }
+        
         public function hmake_register_widgets( $widgets_manager ) {
             $widgets = [
                 'hmake-dynamic-post-grid'    => 'Hmake_Dynamic_Post_Grid',
@@ -173,115 +184,115 @@ final class Hmake_Elementor_Addon {
         }
 
 
-    public function hmake_widget_scripts() {
-        wp_register_script(
-            'hmcoders-dynamic-post-grid-js', // Updated handle to match widgets
-            plugins_url( 'assets/js/hamke-dynamic-post-grid.js', __FILE__ ),
-            [ 'jquery' ],
-            self::VERSION,
-            true
-        );
-        wp_enqueue_script( 'hmcoders-dynamic-post-grid-js' );
+//     public function hmake_widget_scripts() {
+//         wp_register_script(
+//             'hmcoders-dynamic-post-grid-js', // Updated handle to match widgets
+//             plugins_url( 'assets/js/hamke-dynamic-post-grid.js', __FILE__ ),
+//             [ 'jquery' ],
+//             self::VERSION,
+//             true
+//         );
+//         wp_enqueue_script( 'hmcoders-dynamic-post-grid-js' );
 
-        wp_register_script(
-            'hmcoders-advanced-team-member-js', 
-            plugins_url( 'assets/js/hmake-advanced-team-member.js', __FILE__ ),
-            [ 'jquery' ],
-            self::VERSION,
-            true
-        );
-        wp_enqueue_script( 'hmcoders-advanced-team-member-js' );
+//         wp_register_script(
+//             'hmcoders-advanced-team-member-js', 
+//             plugins_url( 'assets/js/hmake-advanced-team-member.js', __FILE__ ),
+//             [ 'jquery' ],
+//             self::VERSION,
+//             true
+//         );
+//         wp_enqueue_script( 'hmcoders-advanced-team-member-js' );
 
-        wp_register_script(
-            'hmcoders-interactive-timeline-js', 
-            plugins_url( 'assets/js/hmake-interactive-timline.js', __FILE__ ),
-            [ 'jquery' ],
-            self::VERSION,
-            true
-        );
-        wp_enqueue_script( 'hmcoders-interactive-timeline-js' );
+//         wp_register_script(
+//             'hmcoders-interactive-timeline-js', 
+//             plugins_url( 'assets/js/hmake-interactive-timline.js', __FILE__ ),
+//             [ 'jquery' ],
+//             self::VERSION,
+//             true
+//         );
+//         wp_enqueue_script( 'hmcoders-interactive-timeline-js' );
        
-        wp_register_script(
-            'hmcoders-pricing-table-pro-js', 
-            plugins_url( 'assets/js/hmake-pricing-table-pro.js', __FILE__ ),
-            [ 'jquery' ],
-            self::VERSION,
-            true
-        );
-        wp_enqueue_script( 'hmcoders-pricing-table-pro-js' );
+//         wp_register_script(
+//             'hmcoders-pricing-table-pro-js', 
+//             plugins_url( 'assets/js/hmake-pricing-table-pro.js', __FILE__ ),
+//             [ 'jquery' ],
+//             self::VERSION,
+//             true
+//         );
+//         wp_enqueue_script( 'hmcoders-pricing-table-pro-js' );
 
-        wp_register_script(
-            'hmcoders-testimonial-carousel-js', 
-            plugins_url( 'assets/js/hmake-testimonial-carousel.js', __FILE__ ),
-            [ 'jquery' ],
-            self::VERSION,
-            true
-        );
-        wp_enqueue_script( 'hmcoders-testimonial-carousel-js' );
-    }
+//         wp_register_script(
+//             'hmcoders-testimonial-carousel-js', 
+//             plugins_url( 'assets/js/hmake-testimonial-carousel.js', __FILE__ ),
+//             [ 'jquery' ],
+//             self::VERSION,
+//             true
+//         );
+//         wp_enqueue_script( 'hmcoders-testimonial-carousel-js' );
+//     }
 
-    public function hmake_enqueue_styles() {
+//     public function hmake_enqueue_styles() {
         
-        // wp_enqueue_style(
-        //     'hmcoders-fontawesome',
-        //     plugin_dir_url( __FILE__ ) . 'assets/font/hmake-fontawesome.css',
-        //     [],
-        //     self::VERSION
-        // );
+//         // wp_enqueue_style(
+//         //     'hmcoders-fontawesome',
+//         //     plugin_dir_url( __FILE__ ) . 'assets/font/hmake-fontawesome.css',
+//         //     [],
+//         //     self::VERSION
+//         // );
             
-        wp_enqueue_style(
-    'hmcoders-fontawesome',
-    'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css',
-    [],
-    '5.15.4'
-);
+//         wp_enqueue_style(
+//     'hmcoders-fontawesome',
+//     'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css',
+//     [],
+//     '5.15.4'
+// );
 
-        wp_enqueue_style(
-            'hmcoders-dynamic-post-grid-css',
-            plugin_dir_url( __FILE__ ) . 'assets/css/hmake-dynamic-post-grid.css',
-            [],
-            self::VERSION
-        );
-        wp_enqueue_style(
-            'hmcoders-advanced-team-member-css',
-            plugin_dir_url( __FILE__ ) . 'assets/css/hmake-advanced-team-member.css',
-            [],
-            self::VERSION
-        );
-        wp_enqueue_style(
-            'hmcoders-interactive-timeline-css',
-            plugin_dir_url( __FILE__ ) . 'assets/css/hmake-interactive-timline.css',
-            [],
-            self::VERSION
-        );
-        wp_enqueue_style(
-            'hmcoders-pricing-table-pro-css',
-            plugin_dir_url( __FILE__ ) . 'assets/css/hmake-pricing-table-pro.css',
-            [],
-            self::VERSION
-        );
-        wp_enqueue_style(
-            'hmcoders-testimonial-carousel-css',
-            plugin_dir_url( __FILE__ ) . 'assets/css/hmake-testimonial-carousel.css',
-            [],
-            self::VERSION
-        );
+//         wp_enqueue_style(
+//             'hmcoders-dynamic-post-grid-css',
+//             plugin_dir_url( __FILE__ ) . 'assets/css/hmake-dynamic-post-grid.css',
+//             [],
+//             self::VERSION
+//         );
+//         wp_enqueue_style(
+//             'hmcoders-advanced-team-member-css',
+//             plugin_dir_url( __FILE__ ) . 'assets/css/hmake-advanced-team-member.css',
+//             [],
+//             self::VERSION
+//         );
+//         wp_enqueue_style(
+//             'hmcoders-interactive-timeline-css',
+//             plugin_dir_url( __FILE__ ) . 'assets/css/hmake-interactive-timline.css',
+//             [],
+//             self::VERSION
+//         );
+//         wp_enqueue_style(
+//             'hmcoders-pricing-table-pro-css',
+//             plugin_dir_url( __FILE__ ) . 'assets/css/hmake-pricing-table-pro.css',
+//             [],
+//             self::VERSION
+//         );
+//         wp_enqueue_style(
+//             'hmcoders-testimonial-carousel-css',
+//             plugin_dir_url( __FILE__ ) . 'assets/css/hmake-testimonial-carousel.css',
+//             [],
+//             self::VERSION
+//         );
        
-        wp_enqueue_style(
-            'hmake-aos',
-            'https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css',
-            [],
-            '2.3.4'
-        );
+//         wp_enqueue_style(
+//             'hmake-aos',
+//             'https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css',
+//             [],
+//             '2.3.4'
+//         );
 
-        wp_enqueue_script(
-            'hmake-aos',
-            'https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js',
-            [],
-            '2.3.4',
-            true
-        );
-    }
+//         wp_enqueue_script(
+//             'hmake-aos',
+//             'https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js',
+//             [],
+//             '2.3.4',
+//             true
+//         );
+//     }
 }
 
 // Initialize plugin

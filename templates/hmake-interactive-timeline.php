@@ -19,7 +19,7 @@ class Hmake_Timeline_Render {
         // Get data: shortcode or Elementor repeater
         $shortcode_data = method_exists(__CLASS__, 'hmake_timeline_shortcode') ? self::hmake_timeline_shortcode($settings) : [];
         $widget_data    = $settings['hmceak_timeline_items'] ?? [];
-
+        
         // Decide which data to use
         $timeline_items = !empty($shortcode_data) ? $shortcode_data : $widget_data;
 
@@ -27,9 +27,12 @@ class Hmake_Timeline_Render {
             return; // Nothing to render
         }
 
-        $layout    = $settings['hmceak_timeline_layout'] ?? 'vertical';
-        $alignment = $settings['hmceak_timeline_alignment'] ?? 'left';
-        $animated  = ( isset($settings['hmceak_show_animation']) && 'yes' === $settings['hmceak_show_animation'] );
+    
+       $layout    = isset($settings['hmceak_timeline_layout']) && $settings['hmceak_timeline_layout'] ? $settings['hmceak_timeline_layout'] : ($settings['layout'] ?? 'vertical');
+       $alignment = isset($settings['hmceak_timeline_alignment']) && $settings['hmceak_timeline_alignment'] ? $settings['hmceak_timeline_alignment'] : ($settings['alignment'] ?? 'left');
+       $animated  = ( isset($settings['hmceak_show_animation']) && 'yes' === $settings['hmceak_show_animation'] );
+
+    $layout = isset($settings['hmceak_timeline_layout']) && $settings['hmceak_timeline_layout'] ? $settings['hmceak_timeline_layout'] : ($settings['layout'] ?? 'vertical');
 
         $timeline_class  = 'hmcoders-timeline-' . $layout;
         $timeline_class .= ' hmcoders-timeline-' . $alignment;

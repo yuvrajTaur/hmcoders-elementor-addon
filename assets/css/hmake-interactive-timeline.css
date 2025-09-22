@@ -49,6 +49,10 @@
   opacity: 1 !important;
   transform: none !important;
 }
+.hmcoders-timeline-horizontal .hmcoders-timeline-item {
+  opacity: 1 !important;
+  transform: none !important;
+}
 
 .hmcoders-timeline-vertical .hmcoders-timeline-item.aos-animate {
     opacity: 1;

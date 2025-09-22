@@ -15,116 +15,133 @@ class Hmake_Timeline_Render {
      * @return void
      */
 
-    public static function hmake_timeline_render_widget( $settings = [] ) {
-        // Get data: shortcode or Elementor repeater
-        $shortcode_data = method_exists(__CLASS__, 'hmake_timeline_shortcode') ? self::hmake_timeline_shortcode($settings) : [];
-        $widget_data    = $settings['hmceak_timeline_items'] ?? [];
-        
-        // Decide which data to use
-        $timeline_items = !empty($shortcode_data) ? $shortcode_data : $widget_data;
+   public static function hmake_timeline_render_widget( $settings = [] ) {
+    // Get data: shortcode or Elementor repeater
+    $shortcode_data = method_exists(__CLASS__, 'hmake_timeline_shortcode') ? self::hmake_timeline_shortcode($settings) : [];
+    $widget_data    = $settings['hmceak_timeline_items'] ?? [];
 
-        if ( empty($timeline_items) ) {
-            return; // Nothing to render
-        }
+    // Decide which data to use
+    $timeline_items = !empty($shortcode_data) ? $shortcode_data : $widget_data;
 
-    
-       $layout    = isset($settings['hmceak_timeline_layout']) && $settings['hmceak_timeline_layout'] ? $settings['hmceak_timeline_layout'] : ($settings['layout'] ?? 'vertical');
-       $alignment = isset($settings['hmceak_timeline_alignment']) && $settings['hmceak_timeline_alignment'] ? $settings['hmceak_timeline_alignment'] : ($settings['alignment'] ?? 'left');
-       $animated  = ( isset($settings['hmceak_show_animation']) && 'yes' === $settings['hmceak_show_animation'] );
+    if ( empty($timeline_items) ) {
+        return; // Nothing to render
+    }
 
-    $layout = isset($settings['hmceak_timeline_layout']) && $settings['hmceak_timeline_layout'] ? $settings['hmceak_timeline_layout'] : ($settings['layout'] ?? 'vertical');
+    // Layout
+    $layout    = $settings['hmceak_timeline_layout'] ?? ($settings['layout'] ?? 'vertical');
+    $alignment = '';
 
-        $timeline_class  = 'hmcoders-timeline-' . $layout;
+    if ( $layout !== 'horizontal' ) {
+        $alignment = $settings['hmceak_timeline_alignment'] ?? ($settings['alignment'] ?? 'left');
+    }
+
+    $animated  = ( isset($settings['hmceak_show_animation']) && 'yes' === $settings['hmceak_show_animation'] );
+
+    // Wrapper classes
+    $timeline_class  = 'hmcoders-timeline-' . $layout;
+    if ( !empty($alignment) ) {
         $timeline_class .= ' hmcoders-timeline-' . $alignment;
-        if ( $animated ) {
-            $timeline_class .= ' hmcoders-timeline-animated';
-        }
+    }
+    if ( $animated ) {
+        $timeline_class .= ' hmcoders-timeline-animated';
+    }
 
-        ob_start();
-        ?>
-        <div class="hmcoders-timeline-wrapper <?php echo esc_attr( $timeline_class ); ?>">
-            <div class="hmcoders-timeline-line"></div>
+    ob_start();
+    ?>
+    <div class="hmcoders-timeline-wrapper <?php echo esc_attr( $timeline_class ); ?>">
+        <div class="hmcoders-timeline-line"></div>
 
-            <?php if ( 'horizontal' === $layout ) : ?>
-                <div class="hmcoders-timeline-items-container">
-            <?php endif; ?>
+        <?php if ( 'horizontal' === $layout ) : ?>
+            <div class="hmcoders-timeline-items-container">
+        <?php endif; ?>
 
-            <?php foreach ( $timeline_items as $index => $item ) :
+        <?php foreach ( $timeline_items as $index => $item ) :
 
-                // Determine alignment
-                if ( 'horizontal' === $layout ) {
-                    $item_class = 'hmcoders-timeline-item';
-                } else {
-                    $item_alignment = $alignment;
-                    if ( 'center' === $alignment ) {
-                        $item_alignment = ( $index % 2 === 0 ) ? 'left' : 'right';
-                    }
-                    $item_position = in_array( $item_alignment, ['left','right'], true ) ? $item_alignment : 'left';
-                    $item_class = 'hmcoders-timeline-item hmcoders-timeline-' . $item_position;
+            // Determine alignment for vertical mode
+            if ( 'horizontal' === $layout ) {
+                $item_class = 'hmcoders-timeline-item';
+            } else {
+                $item_alignment = $alignment;
+                if ( 'center' === $alignment ) {
+                    $item_alignment = ( $index % 2 === 0 ) ? 'left' : 'right';
                 }
+                $item_position = in_array( $item_alignment, ['left','right'], true ) ? $item_alignment : 'left';
+                $item_class = 'hmcoders-timeline-item hmcoders-timeline-' . $item_position;
+            }
 
-                // Link
-                $link_tag   = 'div';
-                $link_attrs = '';
-                $link_data  = $item['hmceak_item_link'] ?? [];
-                if ( !empty($link_data['url']) ) {
-                    $link_tag = 'a';
-                    $attrs = ['href="' . esc_url($link_data['url']) . '"'];
-                    if ( !empty($link_data['is_external']) ) $attrs[] = 'target="_blank"';
-                    if ( !empty($link_data['nofollow']) ) $attrs[] = 'rel="nofollow"';
-                    $link_attrs = implode(' ', $attrs);
+            // Link wrapper
+            $link_tag   = 'div';
+            $link_attrs = '';
+            $link_data  = $item['hmceak_item_link'] ?? [];
+            if ( !empty($link_data['url']) ) {
+                $link_tag = 'a';
+                $attrs = ['href="' . esc_url($link_data['url']) . '"'];
+                if ( !empty($link_data['is_external']) ) {
+                    $attrs[] = 'target="_blank"';
                 }
+                if ( !empty($link_data['nofollow']) ) {
+                    $attrs[] = 'rel="nofollow"';
+                }
+                $link_attrs = implode(' ', $attrs);
+            }
 
-                // Animation
+            // Animation
+            $aos_value = '';
+            if ( $animated ) {
                 if ( 'horizontal' === $layout ) {
                     $aos_value = 'fade-up';
                 } else {
                     $aos_direction = ( isset($item_position) && $item_position === 'right' ) ? 'left' : 'right';
                     $aos_value = 'fade-' . $aos_direction;
                 }
-                ?>
-                <<?php echo esc_attr($link_tag); ?> class="hmcoders-timeline-item <?php echo esc_attr($item_class); ?>" <?php echo esc_attr($link_attrs); ?> data-aos="<?php echo esc_attr($aos_value); ?>">
-                    <?php if ( !empty($item['hmceak_item_date']) ) : ?>
-                        <div class="hmcoders-timeline-date"><?php echo esc_html($item['hmceak_item_date']); ?></div>
+            }
+            ?>
+            <<?php echo esc_html($link_tag); ?>
+                class="hmcoders-timeline-item <?php echo esc_attr($item_class); ?>"
+                <?php echo $link_attrs; ?>
+                <?php if ( $aos_value ) : ?> data-aos="<?php echo esc_attr($aos_value); ?>"<?php endif; ?>>
+
+                <?php if ( !empty($item['hmceak_item_date']) ) : ?>
+                    <div class="hmcoders-timeline-date"><?php echo esc_html($item['hmceak_item_date']); ?></div>
+                <?php endif; ?>
+
+                <div class="hmcoders-timeline-marker">
+                    <div class="hmcoders-timeline-icon">
+                        <?php
+                        if ( !empty($item['hmceak_item_icon']) ) {
+                            \Elementor\Icons_Manager::render_icon( $item['hmceak_item_icon'], ['aria-hidden'=>'true'] );
+                        }
+                        ?>
+                    </div>
+                </div>
+
+                <div class="hmcoders-timeline-content">
+                    <?php if ( !empty($item['hmceak_item_image']['url']) ) : ?>
+                        <div class="hmcoders-timeline-image">
+                            <img src="<?php echo esc_url($item['hmceak_item_image']['url']); ?>" alt="<?php echo esc_attr($item['hmceak_item_title'] ?? ''); ?>">
+                        </div>
                     <?php endif; ?>
 
-                    <div class="hmcoders-timeline-marker">
-                        <div class="hmcoders-timeline-icon">
-                            <?php
-                            if ( !empty($item['hmceak_item_icon']) ) {
-                                \Elementor\Icons_Manager::render_icon( $item['hmceak_item_icon'], ['aria-hidden'=>'true'] );
-                            }
-                            ?>
+                    <?php if ( !empty($item['hmceak_item_title']) ) : ?>
+                        <h3 class="hmcoders-timeline-title"><?php echo esc_html($item['hmceak_item_title']); ?></h3>
+                    <?php endif; ?>
+
+                    <?php if ( !empty($item['hmceak_item_description']) ) : ?>
+                        <div class="hmcoders-timeline-description">
+                            <p><?php echo wp_kses_post($item['hmceak_item_description']); ?></p>
                         </div>
-                    </div>
-
-                    <div class="hmcoders-timeline-content">
-                        <?php if ( !empty($item['hmceak_item_image']['url']) ) : ?>
-                            <div class="hmcoders-timeline-image">
-                                <img src="<?php echo esc_url($item['hmceak_item_image']['url']); ?>" alt="<?php echo esc_attr($item['hmceak_item_title'] ?? ''); ?>">
-                            </div>
-                        <?php endif; ?>
-
-                        <?php if ( !empty($item['hmceak_item_title']) ) : ?>
-                            <h3 class="hmcoders-timeline-title"><?php echo esc_html($item['hmceak_item_title']); ?></h3>
-                        <?php endif; ?>
-
-                        <?php if ( !empty($item['hmceak_item_description']) ) : ?>
-                            <div class="hmcoders-timeline-description">
-                                <p><?php echo wp_kses_post($item['hmceak_item_description']); ?></p>
-                            </div>
-                        <?php endif; ?>
-                    </div>
-                </<?php echo esc_attr($link_tag); ?>>
-            <?php endforeach; ?>
-
-            <?php if ( 'horizontal' === $layout ) : ?>
+                    <?php endif; ?>
                 </div>
-            <?php endif; ?>
-        </div>
-        <?php
-        return ob_get_clean();
-    }
+            </<?php echo esc_html($link_tag); ?>>
+        <?php endforeach; ?>
+
+        <?php if ( 'horizontal' === $layout ) : ?>
+            </div>
+        <?php endif; ?>
+    </div>
+    <?php
+    return ob_get_clean();
+}
 
 
     /**

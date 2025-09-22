@@ -1,4 +1,4 @@
-<?
+<?php
 
 namespace hmcoders\Elementor_Addon;
 
@@ -14,9 +14,10 @@ class Hmake_Timeline_Render {
      * @param array $settings Elementor widget settings or shortcode attributes.
      * @return void
      */
+
     public static function hmake_timeline_render_widget( $settings = [] ) {
         // Get data: shortcode or Elementor repeater
-        $shortcode_data = self::hmake_timeline_shortcode($settings);
+        $shortcode_data = method_exists(__CLASS__, 'hmake_timeline_shortcode') ? self::hmake_timeline_shortcode($settings) : [];
         $widget_data    = $settings['hmceak_timeline_items'] ?? [];
 
         // Decide which data to use
@@ -35,6 +36,7 @@ class Hmake_Timeline_Render {
         if ( $animated ) {
             $timeline_class .= ' hmcoders-timeline-animated';
         }
+
         ob_start();
         ?>
         <div class="hmcoders-timeline-wrapper <?php echo esc_attr( $timeline_class ); ?>">
@@ -45,6 +47,7 @@ class Hmake_Timeline_Render {
             <?php endif; ?>
 
             <?php foreach ( $timeline_items as $index => $item ) :
+
                 // Determine alignment
                 if ( 'horizontal' === $layout ) {
                     $item_class = 'hmcoders-timeline-item';
@@ -60,11 +63,12 @@ class Hmake_Timeline_Render {
                 // Link
                 $link_tag   = 'div';
                 $link_attrs = '';
-                if ( !empty($item['hmceak_item_link']['url']) ) {
+                $link_data  = $item['hmceak_item_link'] ?? [];
+                if ( !empty($link_data['url']) ) {
                     $link_tag = 'a';
-                    $attrs = ['href="' . esc_url($item['hmceak_item_link']['url']) . '"'];
-                    if ( !empty($item['hmceak_item_link']['is_external']) ) $attrs[] = 'target="_blank"';
-                    if ( !empty($item['hmceak_item_link']['nofollow']) ) $attrs[] = 'rel="nofollow"';
+                    $attrs = ['href="' . esc_url($link_data['url']) . '"'];
+                    if ( !empty($link_data['is_external']) ) $attrs[] = 'target="_blank"';
+                    if ( !empty($link_data['nofollow']) ) $attrs[] = 'rel="nofollow"';
                     $link_attrs = implode(' ', $attrs);
                 }
 
@@ -76,7 +80,7 @@ class Hmake_Timeline_Render {
                     $aos_value = 'fade-' . $aos_direction;
                 }
                 ?>
-                <div class="<?php echo esc_attr($item_class); ?>" data-aos="<?php echo esc_attr($aos_value); ?>">
+                <<?php echo esc_attr($link_tag); ?> class="hmcoders-timeline-item <?php echo esc_attr($item_class); ?>" <?php echo esc_attr($link_attrs); ?> data-aos="<?php echo esc_attr($aos_value); ?>">
                     <?php if ( !empty($item['hmceak_item_date']) ) : ?>
                         <div class="hmcoders-timeline-date"><?php echo esc_html($item['hmceak_item_date']); ?></div>
                     <?php endif; ?>
@@ -91,7 +95,7 @@ class Hmake_Timeline_Render {
                         </div>
                     </div>
 
-                    <<?php echo esc_attr($link_tag); ?> class="hmcoders-timeline-content" <?php echo wp_kses_post($link_attrs); ?>>
+                    <div class="hmcoders-timeline-content">
                         <?php if ( !empty($item['hmceak_item_image']['url']) ) : ?>
                             <div class="hmcoders-timeline-image">
                                 <img src="<?php echo esc_url($item['hmceak_item_image']['url']); ?>" alt="<?php echo esc_attr($item['hmceak_item_title'] ?? ''); ?>">
@@ -107,8 +111,8 @@ class Hmake_Timeline_Render {
                                 <p><?php echo wp_kses_post($item['hmceak_item_description']); ?></p>
                             </div>
                         <?php endif; ?>
-                    </<?php echo esc_attr($link_tag); ?>>
-                </div>
+                    </div>
+                </<?php echo esc_attr($link_tag); ?>>
             <?php endforeach; ?>
 
             <?php if ( 'horizontal' === $layout ) : ?>
@@ -116,8 +120,9 @@ class Hmake_Timeline_Render {
             <?php endif; ?>
         </div>
         <?php
-        echo ob_get_clean();
+        return ob_get_clean();
     }
+
 
     /**
      * Shortcode function to fetch timeline items from CPT

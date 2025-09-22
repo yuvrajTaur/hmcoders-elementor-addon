@@ -202,10 +202,12 @@ class Hmake_Interactive_Timeline extends Widget_Base {
         $this->end_controls_section();
     }
 
+    // In your Elementor widget render method
     protected function render() {
-    $settings = $this->get_settings_for_display();
-    Hmake_Timeline_Render::hmake_timeline_render_widget( $settings );
+        $settings = $this->get_settings_for_display();
+        echo Hmake_Timeline_Render::hmake_timeline_render_widget($settings);
     }
+
 
 
 

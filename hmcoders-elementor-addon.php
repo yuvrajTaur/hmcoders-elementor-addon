@@ -178,6 +178,8 @@ final class Hmake_Elementor_Addon {
                 'hmake-aos',
             ]);
         });
+        
+        require_once HMCODERS_PATH . 'templates/hmake-interactive-timeline.php';
 
         // Core plugin functionality includes
         require_once HMCODERS_PATH . 'includes/hmake-class-cpt.php';

@@ -1,6 +1,6 @@
 <?php
 namespace hmcoders\Elementor_Addon;
-
+use hmcoders\Elementor_Addon\Hmake_Timeline_Render;
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Typography;
@@ -203,16 +203,10 @@ class Hmake_Interactive_Timeline extends Widget_Base {
     }
 
     protected function render() {
-        $settings = $this->get_settings_for_display();
-
-        // Path to template file (adjust path as per your plugin)
-        $template_path = plugin_dir_path( dirname( __FILE__ ) ) . 'templates/hmake-interactive-timeline.php';
-
-        if ( file_exists( $template_path ) ) {
-            // Load template and pass $settings variable for usage inside template
-            include $template_path;
-        }
+    $settings = $this->get_settings_for_display();
+    Hmake_Timeline_Render::hmake_timeline_render_widget( $settings );
     }
+
 
 
 

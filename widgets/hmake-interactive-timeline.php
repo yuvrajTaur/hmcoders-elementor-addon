@@ -207,10 +207,4 @@ class Hmake_Interactive_Timeline extends Widget_Base {
         $settings = $this->get_settings_for_display();
         echo Hmake_Timeline_Render::hmake_timeline_render_widget($settings);
     }
-
-
-
-
-
-    protected function content_template() {}
 }

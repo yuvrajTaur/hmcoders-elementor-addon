@@ -37,7 +37,8 @@
                 const observer = new IntersectionObserver(function (entries) {
                     entries.forEach(function (entry) {
                         if (entry.isIntersecting) {
-                            entry.target.classList.add('aos-animate');
+                            entry.target.classList.add('aos-animate visible');
+                            
                         }
                     });
                 }, { threshold: 0.3 });

@@ -45,6 +45,10 @@
     transform: translateY(50px);
     transition: all 0.6s ease;
 }
+.hmcoders-timeline-vertical .hmcoders-timeline-item {
+  opacity: 1 !important;
+  transform: none !important;
+}
 
 .hmcoders-timeline-vertical .hmcoders-timeline-item.aos-animate {
     opacity: 1;

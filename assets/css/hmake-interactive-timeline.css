@@ -126,6 +126,29 @@
     flex-direction: column;
     gap: 12px;
     }
+
+    /* hover effect */
+.hmcoders-timeline-item {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+
+.hmcoders-timeline-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 36px rgba(35,36,104,0.16);
+  z-index: 5;
+}
+
+/* .hmcoders-timeline-item .hmcoders-timeline-image img {
+  transition: transform 0.3s ease;
+}
+
+.hmcoders-timeline-item:hover .hmcoders-timeline-image img {
+  transform: scale(1.1);
+} */
+
     .hmcoders-timeline-image img {
     display: block;
     width: 100%;

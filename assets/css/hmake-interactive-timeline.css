@@ -1,26 +1,44 @@
-.hmcoders-timeline-wrapper.hmcoders-timeline-horizontal {
+/* ======================================================
+   HMCoders Timeline - Horizontal & Vertical Styles
+   ====================================================== */
+
+/* ==============================
+   COMMON WRAPPER
+   ============================== */
+.hmcoders-timeline-wrapper {
   width: 100%;
-  padding: 40px 20px;
-  box-sizing: border-box;
   position: relative;
-  overflow: hidden; /* Prevents outer unwanted scroll */
+  box-sizing: border-box;
   background: #fff;
+  overflow: hidden;
+  padding: 40px 20px;
+}
+
+/* Common timeline line */
+.hmcoders-timeline-line {
+  background: #232468;
+  border-radius: 2px;
+  position: absolute;
+  z-index: 1;
+}
+
+/* ==============================
+   HORIZONTAL TIMELINE
+   ============================== */
+.hmcoders-timeline-wrapper.hmcoders-timeline-horizontal {
+  padding: 40px 20px;
 }
 
 /* Timeline Line */
-.hmcoders-timeline-line {
-  position: absolute;
+.hmcoders-timeline-horizontal .hmcoders-timeline-line {
   top: 60px;
   left: 0;
   height: 4px;
   width: 100%;
-  background: #232468;
-  border-radius: 2px;
-  z-index: 1;
   transition: width 0.2s;
 }
 
-/* Scrollable container for timeline items */
+/* Scrollable container */
 .hmcoders-timeline-items-container {
   display: flex;
   gap: 24px;
@@ -44,7 +62,7 @@
 }
 
 /* Timeline Item/Card */
-.hmcoders-timeline-item {
+.hmcoders-timeline-horizontal .hmcoders-timeline-item {
   position: relative;
   flex: 0 0 340px;
   min-width: 300px;
@@ -55,51 +73,51 @@
   flex-direction: column;
   align-items: flex-start;
   scroll-snap-align: center;
-  margin-top: 0;
   transition: box-shadow 0.2s;
 }
-.hmcoders-timeline-item:hover {
+.hmcoders-timeline-horizontal .hmcoders-timeline-item:hover {
   box-shadow: 0 12px 36px rgba(35,36,104,0.16);
 }
 
 /* Date Badge */
-.hmcoders-timeline-date {
-    position: absolute;
-    left: 40%;
-    top: -54px;
-    transform: translateX(-34%);
-    background: #232468;
-    color: #fff;
-    border-radius: 8px;
-    font-size: 1em;
-    padding: 10px 24px;
-    font-weight: 600;
-    z-index: 4;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.12);
-    text-align: center;
+.hmcoders-timeline-horizontal .hmcoders-timeline-date {
+  position: absolute;
+  left: 40%;
+  top: -54px;
+  transform: translateX(-34%);
+  background: #232468;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 1em;
+  padding: 10px 24px;
+  font-weight: 600;
+  z-index: 4;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+  text-align: center;
 }
-/* Marker/Icon Positioned Below Date */
-.hmcoders-timeline-marker {
-    position: absolute;
-    left: 49%;
-    top: -81px;
-    transform: translateX(-50%);
-    background: #fff;
-    border: 3px solid #232468;
-    width: 44px;
-    height: 44px;
-    border-radius: 61%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 5;
+
+/* Marker/Icon */
+.hmcoders-timeline-horizontal .hmcoders-timeline-marker {
+  position: absolute;
+  left: 49%;
+  top: -81px;
+  transform: translateX(-50%);
+  background: #fff;
+  border: 3px solid #232468;
+  width: 44px;
+  height: 44px;
+  border-radius: 61%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
 }
-.hmcoders-timeline-icon {
+.hmcoders-timeline-horizontal .hmcoders-timeline-icon {
   font-size: 2em;
   color: #232468;
 }
 
-/* Timeline Content Area */
+/* Content */
 .hmcoders-timeline-content {
   padding: 22px 18px 18px 18px;
   width: 100%;
@@ -109,32 +127,30 @@
   gap: 12px;
 }
 .hmcoders-timeline-image img {
-    display: block;
-    width: 100%;
-    max-height: 210px;
-    object-fit: cover;
-    border-radius: 6px;
-    margin-bottom: 9px;
+  display: block;
+  width: 100%;
+  max-height: 210px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 9px;
 }
-
 .hmcoders-timeline-title {
   color: #232468;
   font-size: 1.11em;
   font-weight: 700;
   margin-bottom: 0;
 }
-
 .hmcoders-timeline-description p {
   margin: 0;
   color: #444;
   font-size: 1em;
 }
 
-/* Rectangular Prev/Next Buttons on the timeline line */
+/* Navigation Buttons */
 .hmcoders-timeline-prev,
 .hmcoders-timeline-next {
   position: absolute;
-  top: 50px; /* Align vertically with timeline line */
+  top: 50px;
   width: 60px;
   height: 30px;
   line-height: 30px;
@@ -151,57 +167,157 @@
   padding: 0;
   z-index: 10;
 }
-
-/* Left button on left edge of line */
-.hmcoders-timeline-prev {
-  left: 0;
-}
-
-/* Right button on right edge of line */
-.hmcoders-timeline-next {
-  right: 0;
-}
-
-/* Hover effect */
+.hmcoders-timeline-prev { left: 0; }
+.hmcoders-timeline-next { right: 0; }
 .hmcoders-timeline-prev:hover,
 .hmcoders-timeline-next:hover {
   background: #12224d;
 }
 
-/* Responsive Design */
+/* ==============================
+   VERTICAL TIMELINE
+   ============================== */
+.hmcoders-timeline-wrapper.hmcoders-timeline-vertical {
+  padding: 20px 0;
+}
+
+/* Vertical Line */
+.hmcoders-timeline-vertical .hmcoders-timeline-line {
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 4px;
+  margin-left: -2px;
+}
+
+/* Timeline Item */
+.hmcoders-timeline-vertical .hmcoders-timeline-item {
+  position: relative;
+  width: 46%;
+  margin: 40px 0;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(35, 36, 104, 0.1);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: box-shadow 0.2s;
+}
+.hmcoders-timeline-vertical .hmcoders-timeline-item:hover {
+  box-shadow: 0 12px 36px rgba(35, 36, 104, 0.16);
+}
+
+/* Positioning */
+.hmcoders-timeline-vertical.hmcoders-timeline-left .hmcoders-timeline-item { left: 0; }
+.hmcoders-timeline-vertical.hmcoders-timeline-right .hmcoders-timeline-item { left: 54%; }
+.hmcoders-timeline-vertical.hmcoders-timeline-center .hmcoders-timeline-left { left: 0; }
+.hmcoders-timeline-vertical.hmcoders-timeline-center .hmcoders-timeline-right { left: 54%; }
+
+/* Marker */
+.hmcoders-timeline-vertical .hmcoders-timeline-marker {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  border: 3px solid #232468;
+  width: 44px;
+  height: 44px;
+  border-radius: 61%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+.hmcoders-timeline-vertical .hmcoders-timeline-icon {
+  font-size: 1.6em;
+  color: #232468;
+}
+
+/* Date Badge */
+.hmcoders-timeline-vertical .hmcoders-timeline-date {
+  position: absolute;
+  top: -34px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #232468;
+  color: #fff;
+  padding: 8px 18px;
+  font-size: 0.95em;
+  font-weight: 600;
+  border-radius: 8px;
+  z-index: 6;
+  white-space: nowrap;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+}
+
+/* Content */
+.hmcoders-timeline-vertical .hmcoders-timeline-content {
+  padding: 12px 16px 10px 16px;
+}
+.hmcoders-timeline-vertical .hmcoders-timeline-image img {
+  width: 100%;
+  display: block;
+  max-height: 210px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+.hmcoders-timeline-vertical .hmcoders-timeline-title {
+  font-size: 1.1em;
+  font-weight: 700;
+  color: #232468;
+  margin-bottom: 6px;
+}
+.hmcoders-timeline-vertical .hmcoders-timeline-description p {
+  font-size: 1em;
+  color: #444;
+  margin: 0;
+}
+
+/* ==============================
+   RESPONSIVE RULES
+   ============================== */
+
+/* Horizontal responsive */
 @media (max-width: 1100px) {
-  .hmcoders-timeline-item {
+  .hmcoders-timeline-horizontal .hmcoders-timeline-item {
     flex: 0 0 80vw;
     min-width: 70vw;
   }
 }
-
 @media (max-width: 600px) {
-  .hmcoders-timeline-wrapper.hmcoders-timeline-horizontal {
-    padding: 15px 0;
-  }
-  .hmcoders-timeline-line {
-    top: 48px;
-    left: 0;
-    right: 0;
-  }
-  .hmcoders-timeline-items-container {
-    padding-top: 60px;
-    gap: 12px;
-  }
-  .hmcoders-timeline-item {
-    min-width: 88vw;
-    flex-basis: 92vw;
-  }
-  .hmcoders-timeline-date {
-    font-size: 0.95em;
-    padding: 6px 10px;
-    top: -41px;
-  }
+  .hmcoders-timeline-horizontal { padding: 15px 0; }
+  .hmcoders-timeline-horizontal .hmcoders-timeline-line { top: 48px; }
+  .hmcoders-timeline-horizontal .hmcoders-timeline-items-container { padding-top: 60px; gap: 12px; }
+  .hmcoders-timeline-horizontal .hmcoders-timeline-item { min-width: 88vw; flex-basis: 92vw; }
+  .hmcoders-timeline-horizontal .hmcoders-timeline-date { font-size: 0.95em; padding: 6px 10px; top: -41px; }
+}
+@media (max-width: 400px) {
+  .hmcoders-timeline-horizontal .hmcoders-timeline-item { min-width: 95vw; }
 }
 
-@media (max-width: 400px) {
-  .hmcoders-timeline-item {
-    min-width: 95vw;
+/* Vertical responsive */
+@media (max-width: 1024px) {
+  .hmcoders-timeline-vertical .hmcoders-timeline-item { width: 80%; }
+  .hmcoders-timeline-vertical.hmcoders-timeline-right .hmcoders-timeline-item,
+  .hmcoders-timeline-vertical.hmcoders-timeline-center .hmcoders-timeline-right { left: 20%; }
+}
+@media (max-width: 768px) {
+  .hmcoders-timeline-vertical .hmcoders-timeline-line { left: 12px; }
+  .hmcoders-timeline-vertical .hmcoders-timeline-item {
+    width: calc(100% - 40px);
+    left: 40px !important;
+    margin: 30px 0;
   }
+  .hmcoders-timeline-vertical .hmcoders-timeline-marker { left: 12px; transform: none; }
+  .hmcoders-timeline-vertical .hmcoders-timeline-date {
+    left: 40px; transform: none; font-size: 0.9em; padding: 6px 10px; top: -28px;
+  }
+}
+@media (max-width: 480px) {
+  .hmcoders-timeline-vertical .hmcoders-timeline-item { width: calc(100% - 30px); left: 30px !important; }
+  .hmcoders-timeline-vertical .hmcoders-timeline-date { font-size: 0.85em; padding: 5px 8px; }
 }

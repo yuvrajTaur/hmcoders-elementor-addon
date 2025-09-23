@@ -183,7 +183,6 @@ final class Hmake_Elementor_Addon {
 
         // Core plugin functionality includes
         require_once HMCODERS_PATH . 'includes/hmake-class-cpt.php';
-        require_once HMCODERS_PATH . 'includes/hmake-class-helper.php';
         require_once HMCODERS_PATH . 'includes/hmake-class-shortcode.php';
         require_once HMCODERS_PATH . 'includes/hmake-class-assets.php';
     }

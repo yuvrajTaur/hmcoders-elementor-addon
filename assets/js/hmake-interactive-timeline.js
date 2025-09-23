@@ -1,6 +1,6 @@
 /**
- * hmcoders Elementor Addon - Interactive Timeline Script
- * Version: 1.5.0 - Horizontal Line Width Fixed
+ * hmcoders Elementor Addon - Enhanced Interactive Timeline Script
+ * Version: 2.1.0 - Horizontal Timeline with Scroll Navigation
  */
 (function ($) {
     'use strict';
@@ -14,87 +14,80 @@
         );
     });
 
-    /**
-     * Init Interactive Timeline
-     */
     function initInteractiveTimeline($scope) {
         $scope.find('.hmcoders-timeline-wrapper').each(function () {
             const $timeline = $(this);
             const $items = $timeline.find('.hmcoders-timeline-item');
             const isHorizontal = $timeline.hasClass('hmcoders-timeline-horizontal');
 
-            // Horizontal-specific behaviors
             if (isHorizontal) {
-                initHorizontalScroll($timeline);
-                updateTimelineLineWidth($timeline);
-                $(window).on('resize', function () {
-                    updateTimelineLineWidth($timeline);
-                });
+                initHorizontalTimeline($timeline);
+            } else {
+                initVerticalTimeline($timeline);
             }
 
-            // Scroll animation (AOS)
-            if ($timeline.hasClass('hmcoders-timeline-animated') && 'IntersectionObserver' in window) {
-                const observer = new IntersectionObserver(function (entries) {
-                    entries.forEach(function (entry) {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('aos-animate');   
-                        }
-                    });
-                }, { threshold: 0.3 });
-
-                $items.each(function () {
-                    observer.observe(this);
-                });
-            } else {
-                // Fallback
-                $items.addClass('aos-animate visible');
+            if ($timeline.hasClass('hmcoders-timeline-animated')) {
+                initScrollAnimations($timeline, $items);
             }
         });
     }
 
-    /**
-     * Initialize horizontal scroll and mousewheel
-     */
-    function initHorizontalScroll($timeline) {
+    function initHorizontalTimeline($timeline) {
         const $container = $timeline.find('.hmcoders-timeline-items-container');
+        if (!$container.length) return;
 
-        // Smooth horizontal scroll with mouse wheel
+        // Mouse wheel horizontal scrolling
         $timeline.on('wheel', function (e) {
             if (window.innerWidth > 768) {
                 e.preventDefault();
                 const delta = e.originalEvent.deltaY;
-                $container.scrollLeft($container.scrollLeft() + delta);
+                const scrollAmount = Math.abs(delta) > 100 ? delta : delta * 3;
+                $container.scrollLeft($container.scrollLeft() + scrollAmount);
             }
         });
 
-        // Optional: Auto scroll (uncomment to use)
-        /*
-        const $items = $timeline.find('.hmcoders-timeline-item');
-        let currentIndex = 0;
-        setInterval(function () {
-            if (currentIndex < $items.length - 1) {
-                currentIndex++;
-                const itemOffset = $items.eq(currentIndex).position().left;
-                $container.animate({
-                    scrollLeft: itemOffset
-                }, 800);
-            }
-        }, 5000);
-        */
+        // Touch/swipe support for mobile
+        initTouchEvents($container);
     }
 
-    /**
-     * Fix the timeline line width to match content width
-     */
-    function updateTimelineLineWidth($timeline) {
-        const $line = $timeline.find('.hmcoders-timeline-line');
-        const $container = $timeline.find('.hmcoders-timeline-items-container');
+    function initVerticalTimeline($timeline) {
+        const $items = $timeline.find('.hmcoders-timeline-item');
+        $items.each(function (index) {
+            $(this).css('animation-delay', (index * 0.2) + 's');
+        });
+    }
 
-        if ($line.length && $container.length) {
-            // Match the scrollWidth of the container
-            const fullWidth = $container[0].scrollWidth;
-            $line.css('width', fullWidth + 'px');
+    function initTouchEvents($container) {
+        let startX = 0;
+        let scrollLeft = 0;
+
+        $container.on('touchstart', function (e) {
+            startX = e.originalEvent.touches[0].pageX;
+            scrollLeft = $container.scrollLeft();
+        });
+
+        $container.on('touchmove', function (e) {
+            const x = e.originalEvent.touches[0].pageX;
+            const walk = (startX - x);
+            $container.scrollLeft(scrollLeft + walk);
+        });
+    }
+
+    function initScrollAnimations($timeline, $items) {
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('aos-animate');
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            $items.each(function () {
+                observer.observe(this);
+            });
+        } else {
+            $items.addClass('aos-animate');
         }
     }
-
 })(jQuery);

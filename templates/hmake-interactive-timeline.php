@@ -15,7 +15,7 @@ class Hmake_Timeline_Render {
      * @return void
      */
 
-   public static function hmake_timeline_render_widget( $settings = [] ) {
+public static function hmake_timeline_render_widget( $settings = [] ) {
     // Get data: shortcode or Elementor repeater
     $shortcode_data = method_exists(__CLASS__, 'hmake_timeline_shortcode') ? self::hmake_timeline_shortcode($settings) : [];
     $widget_data    = $settings['hmceak_timeline_items'] ?? [];
@@ -35,10 +35,10 @@ class Hmake_Timeline_Render {
         $alignment = $settings['hmceak_timeline_alignment'] ?? ($settings['alignment'] ?? 'left');
     }
 
-    $animated  = ( isset($settings['hmceak_show_animation']) && 'yes' === $settings['hmceak_show_animation'] );
+    $animated = ( isset($settings['hmceak_show_animation']) && 'yes' === $settings['hmceak_show_animation'] );
 
     // Wrapper classes
-    $timeline_class  = 'hmcoders-timeline-' . $layout;
+    $timeline_class = 'hmcoders-timeline-' . $layout;
     if ( !empty($alignment) ) {
         $timeline_class .= ' hmcoders-timeline-' . $alignment;
     }
@@ -52,12 +52,11 @@ class Hmake_Timeline_Render {
         <div class="hmcoders-timeline-line"></div>
 
         <?php if ( 'horizontal' === $layout ) : ?>
-            <div class="hmcoders-timeline-items-container">
+            <div class="hmcoders-timeline-items-container" id="hmcoders-timeline-container">
         <?php endif; ?>
 
         <?php foreach ( $timeline_items as $index => $item ) :
-
-            // Determine alignment for vertical mode
+            // Determine alignment and classes
             if ( 'horizontal' === $layout ) {
                 $item_class = 'hmcoders-timeline-item';
             } else {
@@ -69,7 +68,7 @@ class Hmake_Timeline_Render {
                 $item_class = 'hmcoders-timeline-item hmcoders-timeline-' . $item_position;
             }
 
-            // Link wrapper
+            // Link wrapper logic
             $link_tag   = 'div';
             $link_attrs = '';
             $link_data  = $item['hmceak_item_link'] ?? [];
@@ -85,7 +84,7 @@ class Hmake_Timeline_Render {
                 $link_attrs = implode(' ', $attrs);
             }
 
-            // Animation
+            // Animation settings
             $aos_value = '';
             if ( $animated ) {
                 if ( 'horizontal' === $layout ) {
@@ -97,7 +96,7 @@ class Hmake_Timeline_Render {
             }
             ?>
             <<?php echo esc_html($link_tag); ?>
-                class="hmcoders-timeline-item <?php echo esc_attr($item_class); ?>"
+                class="<?php echo esc_attr($item_class); ?>"
                 <?php echo $link_attrs; ?>
                 <?php if ( $aos_value ) : ?> data-aos="<?php echo esc_attr($aos_value); ?>"<?php endif; ?>>
 
@@ -128,7 +127,7 @@ class Hmake_Timeline_Render {
 
                     <?php if ( !empty($item['hmceak_item_description']) ) : ?>
                         <div class="hmcoders-timeline-description">
-                            <p><?php echo wp_kses_post($item['hmceak_item_description']); ?></p>
+                            <p><?php echo wp_kses_post(wp_trim_words($item['hmceak_item_description'], 30)); ?></p>
                         </div>
                     <?php endif; ?>
                 </div>
@@ -142,6 +141,7 @@ class Hmake_Timeline_Render {
     <?php
     return ob_get_clean();
 }
+    
 
 
     /**

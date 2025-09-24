@@ -141,14 +141,6 @@
   z-index: 5;
 }
 
-/* .hmcoders-timeline-item .hmcoders-timeline-image img {
-  transition: transform 0.3s ease;
-}
-
-.hmcoders-timeline-item:hover .hmcoders-timeline-image img {
-  transform: scale(1.1);
-} */
-
     .hmcoders-timeline-image img {
     display: block;
     width: 100%;

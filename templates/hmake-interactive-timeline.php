@@ -20,6 +20,8 @@ public static function hmake_timeline_render_widget( $settings = [] ) {
     $shortcode_data = method_exists(__CLASS__, 'hmake_timeline_shortcode') ? self::hmake_timeline_shortcode($settings) : [];
     $widget_data    = $settings['hmceak_timeline_items'] ?? [];
 
+    // var_dump($shortcode_data[0]['hmceak_item_alignment']);die();
+
     // Decide which data to use
     $timeline_items = !empty($shortcode_data) ? $shortcode_data : $widget_data;
 
@@ -28,11 +30,11 @@ public static function hmake_timeline_render_widget( $settings = [] ) {
     }
 
     // Layout
-    $layout    = $settings['hmceak_timeline_layout'] ?? ($settings['layout'] ?? 'vertical');
+    $layout    = $settings['hmceak_timeline_layout'] ?? ($shortcode_data[0]['hmceak_item_layout'] ?? 'vertical');
     $alignment = '';
 
     if ( $layout !== 'horizontal' ) {
-        $alignment = $settings['hmceak_timeline_alignment'] ?? ($settings['alignment'] ?? 'left');
+        $alignment = $settings['hmceak_timeline_alignment'] ?? ($shortcode_data[0]['hmceak_item_alignment'] ?? 'left');
     }
 
     $animated = ( isset($settings['hmceak_show_animation']) && 'yes' === $settings['hmceak_show_animation'] );
@@ -151,34 +153,46 @@ public static function hmake_timeline_render_widget( $settings = [] ) {
      * @return array Timeline items.
      */
     public static function hmake_timeline_shortcode( $atts = [] ) {
+        // Parse shortcode attributes with defaults
         $atts = shortcode_atts([
-            'count' => 5,
-            'order' => 'DESC',
+            'count'     => 5,           
+            'order'     => 'DESC',      
+            'layout'    => 'vertical',  
+            'alignment' => 'center',   
+            'animated'  => 'yes',       
         ], $atts, 'hmake_timeline');
 
+        // Build WP_Query arguments
         $query_args = [
             'post_type'      => 'hmake_timeline',
             'posts_per_page' => intval($atts['count']),
-            'order'          => in_array(strtoupper($atts['order']), ['ASC','DESC']) ? strtoupper($atts['order']) : 'DESC',
+            'order'          => in_array(strtoupper($atts['order']), ['ASC','DESC'], true) ? strtoupper($atts['order']) : 'DESC',
             'orderby'        => 'date',
             'post_status'    => 'publish',
         ];
 
         $query = new \WP_Query($query_args);
-
         $items = [];
 
         if ( $query->have_posts() ) {
             while ( $query->have_posts() ) {
                 $query->the_post();
+
                 $items[] = [
-                    'id' => get_the_ID(),
-                    'hmceak_item_title'       => get_the_title(),
-                    'hmceak_item_description' => get_the_content(),
-                    'hmceak_item_image'       => ['url' => get_the_post_thumbnail_url(get_the_ID(),'full')],
-                    'hmceak_item_date'        => get_the_date(),
-                    'hmceak_item_link'        => ['url' => get_permalink()],
-                    'hmceak_item_icon'        => '', // optional, can be added
+                    'id'                     => get_the_ID(),
+                    'hmceak_item_title'      => get_the_title(),
+                    'hmceak_item_description'=> get_the_content(),
+                    'hmceak_item_image'      => [
+                        'url' => get_the_post_thumbnail_url( get_the_ID(), 'full' )
+                    ],
+                    'hmceak_item_date'       => get_the_date(),
+                    'hmceak_item_link'       => [
+                        'url' => get_permalink(),
+                    ],
+                    'hmceak_item_icon'       => '', // optional, you can extend to use a custom field
+                    'hmceak_item_alignment'  => $atts['alignment'],
+                    'hmceak_item_layout'     => $atts['layout'],
+                    'hmceak_item_animated'   => $atts['animated'],
                 ];
             }
         }
@@ -186,6 +200,7 @@ public static function hmake_timeline_render_widget( $settings = [] ) {
         wp_reset_postdata();
         return $items;
     }
+
 
     /**
      * Elementor widget settings: show CPT if available, otherwise use repeater fields
